@@ -1,0 +1,58 @@
+version: "3.1"
+services:
+  postgres:
+    container_name: postgres
+    build:
+      context: ./db/postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: ceres_growth
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    networks:
+      - postgres-compose-network
+    restart: unless-stopped
+
+  node-backend:
+    container_name: backend
+    build:
+      context: ./backend
+    user: "node"
+    working_dir: /home/node/backend
+    environment:
+      - WEB_PORT=3000
+    volumes:
+      - ./backend/app:/home/node/backend
+    ports:
+      - "3333:3333"
+    command: "yarn dev:server"
+    networks:
+      - node-compose-network
+      - postgres-compose-network
+    restart: unless-stopped
+
+  node-web:
+    container_name: web
+    build:
+      context: ./web
+    user: "node"
+    working_dir: /home/node/ceres-growth-dashboard
+    environment:
+      - NODE_ENV=development
+      - WEB_PORT=3000
+    volumes:
+      - ./web/ceres-growth-dashboard:/home/node
+    ports:
+      - "3000:3000"
+    command: "yarn start"
+    networks:
+      - node-compose-network
+    restart: unless-stopped
+    stdin_open: true
+
+networks:
+  node-compose-network:
+    driver: bridge
+  postgres-compose-network:
+    driver: bridge
