@@ -1,0 +1,34 @@
+{
+  "workbench.colorTheme": "Dracula",
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "emmet.syntaxProfiles": {
+    "javascript": "jsx"
+  },
+  "javascript.updateImportsOnFileMove.enabled": "never",
+  "editor.parameterHints.enabled": false,
+  "breadcrumbs.enabled": true,
+  "javascript.suggest.autoImports": false,
+  "explorer.confirmDragAndDrop": false,
+  "git.enableSmartCommit": true,
+  "explorer.confirmDelete": false,
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    }
+  },
+  "[javascriptreact]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    }
+  },
+  "window.zoomLevel": 0,
+  "git.confirmSync": false,
+  "typescript.updateImportsOnFileMove.enabled": "always"
+}
