@@ -1,9 +1,8 @@
-import { Router } from "express";
+import { Router } from 'express';
+import instagramScraping from './instagram_scraping.routes';
 
 const routes = Router();
 
-routes.get("/", (request, response) => {
-  return response.json({ message: "Hello World" });
-});
+routes.use('/instagram_scraping', instagramScraping);
 
 export default routes;
