@@ -23,7 +23,7 @@ services:
     environment:
       - WEB_PORT=3000
     volumes:
-      - ./backend/app:/home/node/backend
+      - ./backend/ceres-growth-backend:/home/node/backend
     ports:
       - "3333:3333"
     command: yarn dev:server
