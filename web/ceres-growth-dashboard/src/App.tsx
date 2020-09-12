@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import MaterialTable, { Column } from 'material-table';
-import userContent from './userContent.json';
+import api from './services/api';
 
 interface Row {
   username?: string | null;
@@ -22,6 +22,10 @@ interface TableState {
   data: Row[];
 }
 
+interface ServerResponse {
+  data: Row;
+}
+
 export default function MaterialTableDemo() {
   const [state, setState] = React.useState<TableState>({
     columns: [
@@ -37,12 +41,45 @@ export default function MaterialTableDemo() {
       { title: 'success', field: 'success' },
       { title: 'external_url', field: 'external_url' },
     ],
-    data: userContent,
+    data: [{}],
   });
+
+  function handleUpdateTable(data: Row[]) {
+    setState({
+      columns: [
+        { title: 'Nome de usuário', field: 'username' },
+        { title: 'Nome completo', field: 'full_name' },
+        { title: 'Biografia', field: 'biography' },
+        { title: 'Id do instagram', field: 'id' },
+        { title: 'Email da empresa', field: 'business_email' },
+        { title: 'Conectado com o facebook', field: 'connected_fb_page' },
+        { title: 'Conta de empresa', field: 'is_business_account' },
+        { title: 'Conta privada', field: 'is_private' },
+        { title: 'Verificado', field: 'is_verified' },
+        { title: 'Sucesso na requisição', field: 'success' },
+        { title: 'Site do usuário', field: 'external_url' },
+      ],
+      data: data,
+    });
+  }
+
+  React.useEffect(() => {
+    let data = [{}];
+    api
+      .request<Row[]>({
+        method: 'get',
+        url: '/instagram_scraping',
+        transformResponse: (r: ServerResponse) => r.data,
+      })
+      .then(response => {
+        data = JSON.parse(response.request.response);
+        handleUpdateTable(data);
+      });
+  }, []);
 
   return (
     <MaterialTable
-      title="Editable Example"
+      title="Lista de usuários Instagram"
       columns={state.columns}
       data={state.data}
       editable={{
