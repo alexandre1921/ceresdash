@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import instagramScraping from './instagram_scraping.routes';
+import webScraping from './webScraping.routes';
 
 const routes = Router();
 
-routes.use('/instagram_scraping', instagramScraping);
+routes.use('/webScraping', webScraping);
 
 export default routes;
