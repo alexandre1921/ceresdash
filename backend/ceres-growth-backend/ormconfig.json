@@ -1,0 +1,8 @@
+{
+  "type": "postgres",
+  "host": "postgres",
+  "port": 54320,
+  "username": "user",
+  "password": "password",
+  "database": "ceres_growth"
+}

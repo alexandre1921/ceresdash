@@ -5,7 +5,7 @@ services:
     build:
       context: ./db/postgres
     ports:
-      - "5432:5432"
+      - "54320:54320"
     environment:
       POSTGRES_DB: ceres_growth
       POSTGRES_USER: user
@@ -13,6 +13,7 @@ services:
     networks:
       - postgres-compose-network
     restart: unless-stopped
+    command: -p 54320
 
   node-backend:
     container_name: backend
