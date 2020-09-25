@@ -12,4 +12,29 @@ export default createGlobalStyle`
     background: #FDE8DD;
     -webkit-font-smoothing: antialiased;
   }
+  
+  #intem1 {
+    margin: 0 auto;
+    width: 50%;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 20px;
+
+    color: #FFFFFF;
+
+ 
+  }
+
+  #item2 {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 20px;
+
+    color: #FFFFFF;
+  }
+
 `;

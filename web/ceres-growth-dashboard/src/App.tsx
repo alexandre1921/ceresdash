@@ -1,10 +1,16 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
+import Routes from './routes';
 import GlobalStyle from './styles/global';
+import Menu from './pages/header';
 
 const App: React.FC = () => (
   <>
-    <h1>Hello World</h1>
+    <Menu />
+    <BrowserRouter>
+      <Routes />
+    </BrowserRouter>
     <GlobalStyle />
   </>
 );
