@@ -10,6 +10,7 @@ export default createGlobalStyle`
 
   body {
     background: #FDE8DD;
+    font-family: 'Montserrat';
     -webkit-font-smoothing: antialiased;
   }
   

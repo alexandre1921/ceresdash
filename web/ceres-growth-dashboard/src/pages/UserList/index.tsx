@@ -1,14 +1,18 @@
 import React from 'react';
-import { Title, SearchBox } from './styles';
+import { Title, SearchBox, TableOptions } from './styles';
 import SelectList from './Select';
 
 const UserList: React.FC = () => (
   <>
     <Title>Lista de usuários</Title>
-    <>
-      <SearchBox placeholder="Buscar" />
-      <SelectList />
-    </>
+    <TableOptions>
+      <div>
+        <SearchBox placeholder="Buscar" />
+      </div>
+      <div>
+        <SelectList />
+      </div>
+    </TableOptions>
   </>
 );
 
