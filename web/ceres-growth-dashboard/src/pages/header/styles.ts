@@ -34,9 +34,8 @@ export const Items = styled.div`
   position: absolute;
   width: 251.72px;
   height: 120.83px;
-  left: -0.86px;
-  top: 200.37px;
-  text-align: center;
+  left: 50.86px;
+  top: 220.37px;
 `;
 
 export const Reports = styled.a`

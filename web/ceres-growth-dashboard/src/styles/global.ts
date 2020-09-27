@@ -15,6 +15,7 @@ export default createGlobalStyle`
   
   #intem1 {
     margin: 0 auto;
+    top: 4.42%;
     width: 50%;
     font-family: Montserrat;
     font-style: normal;
@@ -29,6 +30,7 @@ export default createGlobalStyle`
 
   #item2 {
     font-family: Montserrat;
+    top: 6.42%;
     font-style: normal;
     font-weight: bold;
     font-size: 12px;
@@ -37,4 +39,20 @@ export default createGlobalStyle`
     color: #FFFFFF;
   }
 
+  #logo {
+    position: absolute;
+    left: 25.9%;
+    right: 87.68%;
+    top: 4.42%;
+    bottom: 87.12%;
+
+    
+    border: 1px solid #15594D;
+    box-sizing: border-box;
+  }
+
+  #menuReports{
+    left: 15.9%;
+    top: 4.42%;
+  }
 `;
