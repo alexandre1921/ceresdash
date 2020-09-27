@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
 `;
 
 export const TableOptions = styled.div`
+  padding-bottom: 27px;
   & div + div {
     padding-left: 26px;
   }
@@ -28,6 +29,7 @@ export const SearchBox = styled.input`
   height: 47px;
 
   padding-top: 2px;
+  padding-right: 6px;
   padding-left: 12px;
 
   background: #ffffff;
@@ -173,5 +175,57 @@ export const SendButton = styled.button`
     color: #929090;
     transition: background 0.2s ease;
     background: #f0f0f0;
+  }
+`;
+
+export const Table = styled.thead`
+  border-spacing: 0px;
+  width: 100%;
+  th {
+    color: #ffffff;
+    font-size: 16px;
+    height: 46px;
+    max-height: 46px;
+  }
+  td {
+    height: 46px;
+    max-height: 46px;
+  }
+`;
+
+export const Thead = styled.thead`
+  background: #0d4137;
+  th:last-child {
+    border-top-right-radius: 5px;
+  }
+  th:first-child {
+    border-top-left-radius: 5px;
+  }
+`;
+
+export const Tbody = styled.tbody`
+  background: #ffffff;
+  td:last-child {
+    img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+`;
+
+export const Tfoot = styled.tfoot`
+  background: #0d4137;
+  td:last-child {
+    border-bottom-right-radius: 5px;
+  }
+  td:first-child {
+    border-bottom-left-radius: 5px;
+  }
+  td {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    empty-cells: show;
   }
 `;
