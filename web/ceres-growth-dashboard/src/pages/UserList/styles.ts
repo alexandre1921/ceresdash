@@ -4,7 +4,7 @@ export const Title = styled.h1`
   /* Lista de usuários */
 
   position: absolute;
-  width: 294px;
+
   height: 39px;
   left: 331px;
   top: 45px;
@@ -21,7 +21,7 @@ export const Title = styled.h1`
 export const TableOptions = styled.div`
   display: flex;
   position: absolute;
-  width: 480px;
+
   height: 47px;
   left: 331px;
   top: 120px;
@@ -32,7 +32,7 @@ export const TableOptions = styled.div`
 
 export const SearchBox = styled.input`
   /* Lista de usuários */
-  width: 480px;
+
   height: 47px;
 
   padding-top: 2px;
@@ -54,7 +54,7 @@ export const SearchBox = styled.input`
 
 export const Select = styled.div`
   /* Lista de usuários */
-  width: 147px;
+
   height: 47px;
 
   font-weight: 600;
@@ -76,9 +76,25 @@ export const Select = styled.div`
   }
 `;
 
+export const SelectTitle = styled.p`
+  display: flex;
+  font-size: 13px;
+  p {
+    font-weight: 600;
+    padding-top: 15px;
+    padding-left: 16px;
+    padding-bottom: 7px;
+    max-width: 85%;
+    flex: 1;
+  }
+  & img {
+    padding-top: 20px;
+  }
+`;
+
 export const SelectButton = styled.a`
   /* Lista de usuários */
-  width: 147px;
+
   height: 47px;
 
   display: inline-block;
@@ -88,27 +104,19 @@ export const SelectButton = styled.a`
   border-style: none;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
   border-radius: 5px;
-  transition: all 0.4s ease;
+  transition: background 0.4s ease;
 
-  & p {
-    font-weight: 600;
-    padding-top: 15px;
-    padding-left: 16px;
-    padding-bottom: 7px;
-  }
   &:active,
   &:focus {
     & {
-      transition: all 0.2s ease;
+      transition: background 0.2s ease;
       background: #d3d3d3;
+      height: 50px;
     }
     & div {
       display: block;
     }
     & img {
-      padding-left: 0px;
-      padding-right: 18px;
-      padding-top: 3px;
       transform: rotate(180deg);
     }
   }
@@ -121,7 +129,6 @@ export const SelectButton = styled.a`
 `;
 
 export const SelectList = styled.div`
-  width: 147px;
   height: 47px;
 `;
 
@@ -135,10 +142,10 @@ export const SelectOption = styled.a`
   padding-left: 12px;
   background: #ffffff;
   border-style: none;
-  transition: all 0.2s ease;
+  transition: background 0.4s ease;
   &:hover {
     background: #f0f0f0;
-    transition: all 0.2s ease;
+    transition: background 0.2s ease;
   }
   &:first-child {
     border-radius: 5px 5px 0px 0px;
@@ -149,7 +156,32 @@ export const SelectOption = styled.a`
 `;
 
 export const Arrow = styled.img`
-  padding-bottom: 2px;
-  padding-left: 18px;
+  padding-bottom: 20px;
   transform: rotate(0deg);
+`;
+
+export const SendButton = styled.button`
+  height: 47px;
+
+  font-weight: 600;
+  font-family: inherit;
+  display: inline-block;
+  text-decoration: none;
+  color: #262121;
+  background: #ffffff;
+  border-style: none;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 1.5s ease;
+
+  &:active {
+    transition: background 0.2s ease;
+    background: #d3d3d3;
+  }
+  &:disabled {
+    color: #929090;
+    transition: background 0.2s ease;
+    background: #f0f0f0;
+  }
 `;
