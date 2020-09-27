@@ -1,6 +1,6 @@
 import React from 'react';
-import { Title, Menu, Items } from './styles';
-import GlobalStyle from '../../styles/global';
+import { Menu, Items } from './styles';
+import { Title } from '../../styles/global';
 
 const Header: React.FC = () => {
   return (
@@ -18,7 +18,6 @@ const Header: React.FC = () => {
           </div>
         </Items>
       </Menu>
-      <GlobalStyle />
     </>
   );
 };

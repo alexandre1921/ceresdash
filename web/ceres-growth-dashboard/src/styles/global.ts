@@ -1,4 +1,16 @@
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
+
+export const Title = styled.h1`
+  height: 39px;
+  left: 331px;
+  top: 45px;
+  margin-bottom: 51px;
+
+  font-style: normal;
+  font-weight: medium;
+  font-size: 32px;
+  color: #0d4137;
+`;
 
 export default createGlobalStyle`
   *{

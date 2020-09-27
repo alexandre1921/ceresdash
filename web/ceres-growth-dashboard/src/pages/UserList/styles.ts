@@ -1,38 +1,30 @@
 import styled from 'styled-components';
 
-export const Title = styled.h1`
-  /* Lista de usuários */
-
-  position: absolute;
-
-  height: 39px;
-  left: 331px;
-  top: 45px;
-
-  font-style: normal;
-  font-weight: medium;
-  font-size: 32px;
-
-  /* identical to box height */
-
-  color: #0d4137;
+export const Wrapper = styled.div`
+  margin-left: 80px;
+  margin-right: 80px;
+  margin-top: 45px;
 `;
 
 export const TableOptions = styled.div`
-  display: flex;
-  position: absolute;
-
-  height: 47px;
-  left: 331px;
-  top: 120px;
   & div + div {
     padding-left: 26px;
   }
 `;
 
+export const Box = styled.div`
+  display: flex;
+  background: #ffffff;
+  border-radius: 5px;
+  padding-right: 15px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+`;
+
+export const Magnifier = styled.img``;
+
 export const SearchBox = styled.input`
   /* Lista de usuários */
-
+  width: 100%;
   height: 47px;
 
   padding-top: 2px;
@@ -40,7 +32,6 @@ export const SearchBox = styled.input`
 
   background: #ffffff;
   border-style: none;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
   border-radius: 5px;
 
   &::placeholder {
@@ -54,9 +45,8 @@ export const SearchBox = styled.input`
 
 export const Select = styled.div`
   /* Lista de usuários */
-
+  width: 100%;
   height: 47px;
-
   font-weight: 600;
   padding-left: 12px;
   background: #ffffff;
@@ -96,7 +86,7 @@ export const SelectButton = styled.a`
   /* Lista de usuários */
 
   height: 47px;
-
+  width: 100%;
   display: inline-block;
   text-decoration: none;
   color: #262121;
@@ -162,7 +152,7 @@ export const Arrow = styled.img`
 
 export const SendButton = styled.button`
   height: 47px;
-
+  width: 100%;
   font-weight: 600;
   font-family: inherit;
   display: inline-block;
