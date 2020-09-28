@@ -19,12 +19,15 @@ const Header: React.FC = () => {
           <Title>Ceres Dashboard</Title>
         </div>
         <Items>
+          <hr />
+          <div />
           <a href="/" id="intem1" className={lick1}>
             <img src={iconeReports} alt="Relatórios" />
             <div>
               <strong>Relatórios</strong>
             </div>
           </a>
+          <div />
           <a href="/list" id="item2" className={lick2}>
             <img src={iconeList} alt="Lista de Usuários" />
             <div>
