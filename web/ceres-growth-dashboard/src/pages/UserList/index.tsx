@@ -23,7 +23,7 @@ import {
 } from './styles';
 import { Grid, Row, ColMd12 } from '../../styles/grid';
 import magnifier from '../../assets/magnifier.svg';
-import actions from '../../assets/actions.svg';
+import { ReactComponent as Actions } from '../../assets/actions.svg';
 import { ReactComponent as Arrow } from '../../assets/arrow.svg';
 import { ReactComponent as Checkbox } from '../../assets/checkbox.svg';
 import { ReactComponent as MarkedCheckbox } from '../../assets/markedCheckbox.svg';
@@ -217,7 +217,7 @@ const UserList: React.FC = () => {
                             if (index === table.thead.length - 1)
                               return (
                                 <button type="button" onClick={show}>
-                                  <img src={actions} alt="actions" />
+                                  <Actions />
                                 </button>
                               );
                             return value;

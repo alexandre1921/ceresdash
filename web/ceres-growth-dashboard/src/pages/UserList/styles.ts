@@ -34,7 +34,13 @@ export const Box = styled.div`
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
 `;
 
-export const Magnifier = styled.img``;
+export const Magnifier = styled.img`
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+`;
 
 export const SearchBox = styled.input`
   /* Lista de usuários */
@@ -106,6 +112,11 @@ export const SelectButton = styled.a`
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
   border-radius: 5px;
   transition: background 0.4s ease;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 
   & svg {
     margin-top: 20px;
@@ -189,6 +200,13 @@ export const SendButton = styled.button`
 `;
 
 export const Table = styled.table`
+  svg {
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
   border-spacing: 0px;
   width: 100%;
   th {
