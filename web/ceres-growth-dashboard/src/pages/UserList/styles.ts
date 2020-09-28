@@ -199,7 +199,7 @@ export const SendButton = styled.button`
   }
 `;
 
-export const Table = styled.table`
+export const TableComponent = styled.table`
   svg {
     user-select: none;
     -moz-user-select: none;
