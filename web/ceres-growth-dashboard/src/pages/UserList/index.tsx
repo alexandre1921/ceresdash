@@ -152,90 +152,92 @@ const UserList: React.FC = () => {
             <Title>Lista de usuários</Title>
           </ColMd12>
         </Row>
-        <Row>
-          <ColMd12>
-            <TableOptions>
-              <Row>
-                <SearchBoxDiv>
-                  <Box>
-                    <SearchBox placeholder="Buscar" />
-                    <Magnifier src={magnifier} alt="magnifier" />
-                  </Box>
-                </SearchBoxDiv>
-                {selects.map(value => (
-                  <SelectDiv>
-                    <SelectButton href="#">
-                      <>
-                        <SelectTitle>
-                          <p>{value.title}</p>
-                          <Arrow />
-                        </SelectTitle>
-                      </>
-                      <SelectList>
-                        {value.options.map(option => (
-                          <SelectOption href="#">{option}</SelectOption>
-                        ))}
-                      </SelectList>
-                    </SelectButton>
-                  </SelectDiv>
-                ))}
-                <SendButtonDiv>
-                  <SendButton>Enviar mensagem</SendButton>
-                </SendButtonDiv>
-              </Row>
-            </TableOptions>
-          </ColMd12>
-        </Row>
-        <Row>
-          <ColMd12>
-            <Table>
-              <Thead>
-                <tr>
-                  {table.thead.map(value => (
-                    <th>{value}</th>
+        <div>
+          <Row>
+            <ColMd12>
+              <TableOptions>
+                <Row>
+                  <SearchBoxDiv>
+                    <Box>
+                      <SearchBox placeholder="Buscar" />
+                      <Magnifier src={magnifier} alt="magnifier" />
+                    </Box>
+                  </SearchBoxDiv>
+                  {selects.map(value => (
+                    <SelectDiv>
+                      <SelectButton href="#">
+                        <>
+                          <SelectTitle>
+                            <p>{value.title}</p>
+                            <Arrow />
+                          </SelectTitle>
+                        </>
+                        <SelectList>
+                          {value.options.map(option => (
+                            <SelectOption href="#">{option}</SelectOption>
+                          ))}
+                        </SelectList>
+                      </SelectButton>
+                    </SelectDiv>
                   ))}
-                </tr>
-              </Thead>
-              <Tbody>
-                {table.tbody.map((tbodyRow, trIndex) => (
+                  <SendButtonDiv>
+                    <SendButton>Enviar mensagem</SendButton>
+                  </SendButtonDiv>
+                </Row>
+              </TableOptions>
+            </ColMd12>
+          </Row>
+          <Row>
+            <ColMd12>
+              <Table>
+                <Thead>
                   <tr>
-                    {tbodyRow.map((value, index) => (
-                      <td>
-                        {(() => {
-                          if (index === 0)
-                            return (
-                              <button
-                                type="button"
-                                onClick={() => {
-                                  check(trIndex + 1);
-                                }}
-                              >
-                                {checkbox[trIndex + 1]}
-                              </button>
-                            );
-                          if (index === table.thead.length - 1)
-                            return (
-                              <button type="button" onClick={show}>
-                                <img src={actions} alt="actions" />
-                              </button>
-                            );
-                          return value;
-                        })()}
-                      </td>
+                    {table.thead.map(value => (
+                      <th>{value}</th>
                     ))}
                   </tr>
-                ))}
-              </Tbody>
-              <Tfoot>
-                <tr>
-                  {table.tfoot.map(value => (
-                    <td colSpan={5}>{value}</td>
+                </Thead>
+                <Tbody>
+                  {table.tbody.map((tbodyRow, trIndex) => (
+                    <tr>
+                      {tbodyRow.map((value, index) => (
+                        <td>
+                          {(() => {
+                            if (index === 0)
+                              return (
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    check(trIndex + 1);
+                                  }}
+                                >
+                                  {checkbox[trIndex + 1]}
+                                </button>
+                              );
+                            if (index === table.thead.length - 1)
+                              return (
+                                <button type="button" onClick={show}>
+                                  <img src={actions} alt="actions" />
+                                </button>
+                              );
+                            return value;
+                          })()}
+                        </td>
+                      ))}
+                    </tr>
                   ))}
-                </tr>
-              </Tfoot>
-            </Table>
-          </ColMd12>
-        </Row>
+                </Tbody>
+                <Tfoot>
+                  <tr>
+                    {table.tfoot.map(value => (
+                      <td colSpan={5}>{value}</td>
+                    ))}
+                  </tr>
+                </Tfoot>
+              </Table>
+            </ColMd12>
+          </Row>
+        </div>
       </Grid>
     </Wrapper>
   );
