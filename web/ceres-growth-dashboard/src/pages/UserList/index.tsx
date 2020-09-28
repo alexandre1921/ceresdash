@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Wrapper,
   Box,
@@ -16,15 +16,59 @@ import {
   Tfoot,
   Footer,
   FooterText,
+  SearchBoxDiv,
+  SelectDiv,
+  SendButtonDiv,
 } from './styles';
 import { Title } from '../../styles/global';
-import { Grid, Row, ColMd2, ColMd6, ColMd12 } from '../../styles/grid';
+import { Grid, Row, ColMd12 } from '../../styles/grid';
 import magnifier from '../../assets/magnifier.svg';
 import actions from '../../assets/actions.svg';
 import { ReactComponent as Arrow } from '../../assets/arrow.svg';
 import { ReactComponent as Checkbox } from '../../assets/checkbox.svg';
+import { ReactComponent as MarkedCheckbox } from '../../assets/markedCheckbox.svg';
 
 const UserList: React.FC = () => {
+  const [checkbox, setCheckbox] = useState([
+    [<Checkbox />, false],
+    [<Checkbox />, false],
+    [<Checkbox />, false],
+    [<Checkbox />, false],
+    [<Checkbox />, false],
+    [<Checkbox />, false],
+    [<Checkbox />, false],
+  ]);
+
+  function check(index: number): void {
+    let newCheckbox = [...checkbox];
+    console.log(index);
+
+    if (index === 0) {
+      newCheckbox = checkbox[0][1]
+        ? [
+            [<Checkbox />, false],
+            [<Checkbox />, false],
+            [<Checkbox />, false],
+            [<Checkbox />, false],
+            [<Checkbox />, false],
+            [<Checkbox />, false],
+            [<Checkbox />, false],
+          ]
+        : [
+            [<MarkedCheckbox />, true],
+            [<MarkedCheckbox />, true],
+            [<MarkedCheckbox />, true],
+            [<MarkedCheckbox />, true],
+            [<MarkedCheckbox />, true],
+            [<MarkedCheckbox />, true],
+            [<MarkedCheckbox />, true],
+          ];
+    } else if (newCheckbox[index][1])
+      newCheckbox[index] = [<Checkbox />, false];
+    else newCheckbox[index] = [<MarkedCheckbox />, true];
+
+    setCheckbox(newCheckbox);
+  }
   const show = () => console.log('a');
 
   const selects = [
@@ -34,8 +78,13 @@ const UserList: React.FC = () => {
 
   const table = {
     thead: [
-      <button type="button" onClick={show}>
-        <Checkbox />
+      <button
+        type="button"
+        onClick={() => {
+          check(0);
+        }}
+      >
+        {checkbox[0]}
       </button>,
       'Nome',
       'Username',
@@ -44,103 +93,46 @@ const UserList: React.FC = () => {
     ],
     tbody: [
       [
-        <button type="button" onClick={show}>
-          <Checkbox />
-        </button>,
+        'checkbox',
         'Roger Carlos',
         '@rogercarlos',
         '123541251235123',
-        <button type="button" onClick={show}>
-          <img src={actions} alt="actions" />
-        </button>,
+        'more info',
       ],
       [
-        <button type="button" onClick={show}>
-          <Checkbox />
-        </button>,
+        'checkbox',
         'Roger Carlos',
         '@rogercarlos',
         '123541251235123',
-        <button type="button" onClick={show}>
-          <img src={actions} alt="actions" />
-        </button>,
+        'more info',
       ],
       [
-        <button type="button" onClick={show}>
-          <Checkbox />
-        </button>,
+        'checkbox',
         'Roger Carlos',
         '@rogercarlos',
         '123541251235123',
-        <button type="button" onClick={show}>
-          <img src={actions} alt="actions" />
-        </button>,
+        'more info',
       ],
       [
-        <button type="button" onClick={show}>
-          <Checkbox />
-        </button>,
+        'checkbox',
         'Roger Carlos',
         '@rogercarlos',
         '123541251235123',
-        <button type="button" onClick={show}>
-          <img src={actions} alt="actions" />
-        </button>,
+        'more info',
       ],
       [
-        <button type="button" onClick={show}>
-          <Checkbox />
-        </button>,
+        'checkbox',
         'Roger Carlos',
         '@rogercarlos',
         '123541251235123',
-        <button type="button" onClick={show}>
-          <img src={actions} alt="actions" />
-        </button>,
+        'more info',
       ],
       [
-        <button type="button" onClick={show}>
-          <Checkbox />
-        </button>,
+        'checkbox',
         'Roger Carlos',
         '@rogercarlos',
         '123541251235123',
-        <button type="button" onClick={show}>
-          <img src={actions} alt="actions" />
-        </button>,
-      ],
-      [
-        <button type="button" onClick={show}>
-          <Checkbox />
-        </button>,
-        'Roger Carlos',
-        '@rogercarlos',
-        '123541251235123',
-        <button type="button" onClick={show}>
-          <img src={actions} alt="actions" />
-        </button>,
-      ],
-      [
-        <button type="button" onClick={show}>
-          <Checkbox />
-        </button>,
-        'Roger Carlos',
-        '@rogercarlos',
-        '123541251235123',
-        <button type="button" onClick={show}>
-          <img src={actions} alt="actions" />
-        </button>,
-      ],
-      [
-        <button type="button" onClick={show}>
-          <Checkbox />
-        </button>,
-        'Roger Carlos',
-        '@rogercarlos',
-        '123541251235123',
-        <button type="button" onClick={show}>
-          <img src={actions} alt="actions" />
-        </button>,
+        'more info',
       ],
     ],
     tfoot: [
@@ -164,14 +156,14 @@ const UserList: React.FC = () => {
           <ColMd12>
             <TableOptions>
               <Row>
-                <ColMd6>
+                <SearchBoxDiv>
                   <Box>
                     <SearchBox placeholder="Buscar" />
                     <Magnifier src={magnifier} alt="magnifier" />
                   </Box>
-                </ColMd6>
+                </SearchBoxDiv>
                 {selects.map(value => (
-                  <ColMd2>
+                  <SelectDiv>
                     <SelectButton href="#">
                       <>
                         <SelectTitle>
@@ -185,11 +177,11 @@ const UserList: React.FC = () => {
                         ))}
                       </SelectList>
                     </SelectButton>
-                  </ColMd2>
+                  </SelectDiv>
                 ))}
-                <ColMd2>
-                  <SendButton disabled>Enviar mensagem</SendButton>
-                </ColMd2>
+                <SendButtonDiv>
+                  <SendButton>Enviar mensagem</SendButton>
+                </SendButtonDiv>
               </Row>
             </TableOptions>
           </ColMd12>
@@ -205,10 +197,31 @@ const UserList: React.FC = () => {
                 </tr>
               </Thead>
               <Tbody>
-                {table.tbody.map(tbodyRow => (
+                {table.tbody.map((tbodyRow, trIndex) => (
                   <tr>
-                    {tbodyRow.map(value => (
-                      <td>{value}</td>
+                    {tbodyRow.map((value, index) => (
+                      <td>
+                        {(() => {
+                          if (index === 0)
+                            return (
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  check(trIndex + 1);
+                                }}
+                              >
+                                {checkbox[trIndex + 1]}
+                              </button>
+                            );
+                          if (index === table.thead.length - 1)
+                            return (
+                              <button type="button" onClick={show}>
+                                <img src={actions} alt="actions" />
+                              </button>
+                            );
+                          return value;
+                        })()}
+                      </td>
                     ))}
                   </tr>
                 ))}

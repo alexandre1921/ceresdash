@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
+  min-width: 1026px;
   margin-left: 80px;
   margin-right: 80px;
   margin-top: 45px;
@@ -293,4 +294,13 @@ export const Footer = styled.div`
 export const FooterText = styled.p`
   font-size: 16px;
   font-weight: 700;
+`;
+export const SearchBoxDiv = styled.div`
+  width: 100%;
+`;
+export const SelectDiv = styled.div`
+  min-width: 147px;
+`;
+export const SendButtonDiv = styled.div`
+  min-width: 173px;
 `;
