@@ -9,24 +9,148 @@ import {
   SelectButton,
   SelectList,
   SelectOption,
-  Arrow,
   SendButton,
   Table,
   Thead,
   Tbody,
   Tfoot,
+  Footer,
+  FooterText,
 } from './styles';
 import { Title } from '../../styles/global';
 import { Grid, Row, ColMd2, ColMd6, ColMd12 } from '../../styles/grid';
-import arrow from '../../assets/arrow.svg';
 import magnifier from '../../assets/magnifier.svg';
 import actions from '../../assets/actions.svg';
+import { ReactComponent as Arrow } from '../../assets/arrow.svg';
+import { ReactComponent as Checkbox } from '../../assets/checkbox.svg';
 
 const UserList: React.FC = () => {
+  const show = () => console.log('a');
+
   const selects = [
     { title: 'Rede Social', options: ['Instagram', 'Facebook'] },
     { title: 'Filtros', options: ['Opc 1', 'Opc 2', 'Opc 3'] },
   ];
+
+  const table = {
+    thead: [
+      <button type="button" onClick={show}>
+        <Checkbox />
+      </button>,
+      'Nome',
+      'Username',
+      'Facebook ID',
+      'Ações',
+    ],
+    tbody: [
+      [
+        <button type="button" onClick={show}>
+          <Checkbox />
+        </button>,
+        'Roger Carlos',
+        '@rogercarlos',
+        '123541251235123',
+        <button type="button" onClick={show}>
+          <img src={actions} alt="actions" />
+        </button>,
+      ],
+      [
+        <button type="button" onClick={show}>
+          <Checkbox />
+        </button>,
+        'Roger Carlos',
+        '@rogercarlos',
+        '123541251235123',
+        <button type="button" onClick={show}>
+          <img src={actions} alt="actions" />
+        </button>,
+      ],
+      [
+        <button type="button" onClick={show}>
+          <Checkbox />
+        </button>,
+        'Roger Carlos',
+        '@rogercarlos',
+        '123541251235123',
+        <button type="button" onClick={show}>
+          <img src={actions} alt="actions" />
+        </button>,
+      ],
+      [
+        <button type="button" onClick={show}>
+          <Checkbox />
+        </button>,
+        'Roger Carlos',
+        '@rogercarlos',
+        '123541251235123',
+        <button type="button" onClick={show}>
+          <img src={actions} alt="actions" />
+        </button>,
+      ],
+      [
+        <button type="button" onClick={show}>
+          <Checkbox />
+        </button>,
+        'Roger Carlos',
+        '@rogercarlos',
+        '123541251235123',
+        <button type="button" onClick={show}>
+          <img src={actions} alt="actions" />
+        </button>,
+      ],
+      [
+        <button type="button" onClick={show}>
+          <Checkbox />
+        </button>,
+        'Roger Carlos',
+        '@rogercarlos',
+        '123541251235123',
+        <button type="button" onClick={show}>
+          <img src={actions} alt="actions" />
+        </button>,
+      ],
+      [
+        <button type="button" onClick={show}>
+          <Checkbox />
+        </button>,
+        'Roger Carlos',
+        '@rogercarlos',
+        '123541251235123',
+        <button type="button" onClick={show}>
+          <img src={actions} alt="actions" />
+        </button>,
+      ],
+      [
+        <button type="button" onClick={show}>
+          <Checkbox />
+        </button>,
+        'Roger Carlos',
+        '@rogercarlos',
+        '123541251235123',
+        <button type="button" onClick={show}>
+          <img src={actions} alt="actions" />
+        </button>,
+      ],
+      [
+        <button type="button" onClick={show}>
+          <Checkbox />
+        </button>,
+        'Roger Carlos',
+        '@rogercarlos',
+        '123541251235123',
+        <button type="button" onClick={show}>
+          <img src={actions} alt="actions" />
+        </button>,
+      ],
+    ],
+    tfoot: [
+      <Footer>
+        <FooterText>1 de 2000</FooterText>
+        <Arrow />
+        <Arrow />
+      </Footer>,
+    ],
+  };
 
   return (
     <Wrapper>
@@ -52,7 +176,7 @@ const UserList: React.FC = () => {
                       <>
                         <SelectTitle>
                           <p>{value.title}</p>
-                          <Arrow src={arrow} alt="arrow" />
+                          <Arrow />
                         </SelectTitle>
                       </>
                       <SelectList>
@@ -75,40 +199,25 @@ const UserList: React.FC = () => {
             <Table>
               <Thead>
                 <tr>
-                  <th>1</th>
-                  <th>Nome</th>
-                  <th>Username</th>
-                  <th>Facebook ID</th>
-                  <th>Ações</th>
+                  {table.thead.map(value => (
+                    <th>{value}</th>
+                  ))}
                 </tr>
               </Thead>
               <Tbody>
-                <tr>
-                  <td>Body content 1</td>
-                  <td>Body content 2</td>
-                  <td>Body content 3</td>
-                  <td>Body content 4</td>
-                  <td>
-                    <img src={actions} alt="actions" />
-                  </td>
-                </tr>
-                <tr>
-                  <td>Body content 1</td>
-                  <td>Body content 2</td>
-                  <td>Body content 3</td>
-                  <td>Body content 4</td>
-                  <td>
-                    <img src={actions} alt="actions" />
-                  </td>
-                </tr>
+                {table.tbody.map(tbodyRow => (
+                  <tr>
+                    {tbodyRow.map(value => (
+                      <td>{value}</td>
+                    ))}
+                  </tr>
+                ))}
               </Tbody>
               <Tfoot>
                 <tr>
-                  <td>Footer content 1</td>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                  <td>Footer content 5</td>
+                  {table.tfoot.map(value => (
+                    <td colSpan={5}>{value}</td>
+                  ))}
                 </tr>
               </Tfoot>
             </Table>

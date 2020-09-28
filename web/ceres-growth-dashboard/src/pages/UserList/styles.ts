@@ -55,7 +55,6 @@ export const Select = styled.div`
   border-style: none;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
   border-radius: 5px;
-
   option {
     padding-left: 12px;
     max-height: 47px;
@@ -98,6 +97,10 @@ export const SelectButton = styled.a`
   border-radius: 5px;
   transition: background 0.4s ease;
 
+  & svg {
+    margin-top: 20px;
+  }
+
   &:active,
   &:focus {
     & {
@@ -108,7 +111,7 @@ export const SelectButton = styled.a`
     & div {
       display: block;
     }
-    & img {
+    & svg {
       transform: rotate(180deg);
     }
   }
@@ -147,11 +150,6 @@ export const SelectOption = styled.a`
   }
 `;
 
-export const Arrow = styled.img`
-  padding-bottom: 20px;
-  transform: rotate(0deg);
-`;
-
 export const SendButton = styled.button`
   height: 47px;
   width: 100%;
@@ -178,11 +176,12 @@ export const SendButton = styled.button`
   }
 `;
 
-export const Table = styled.thead`
+export const Table = styled.table`
   border-spacing: 0px;
   width: 100%;
   th {
     color: #ffffff;
+    font-weight: 700;
     font-size: 16px;
     height: 46px;
     max-height: 46px;
@@ -190,37 +189,72 @@ export const Table = styled.thead`
   td {
     height: 46px;
     max-height: 46px;
+    min-width: 124px;
+  }
+  button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  tbody,
+  thead {
+    td:first-child {
+      float: left;
+      min-width: 83px;
+    }
+    td:last-child {
+      float: right;
+      min-width: 100px;
+    }
   }
 `;
 
 export const Thead = styled.thead`
   background: #0d4137;
-  th:last-child {
-    border-top-right-radius: 5px;
-  }
+  text-align: left;
   th:first-child {
+    * {
+      fill: #ffffff;
+    }
+    button {
+      margin: 0;
+    }
+    border: none;
+    width: 10px;
+    padding-top: 3px;
+    padding-left: 31px;
     border-top-left-radius: 5px;
+  }
+  th:last-child {
+    text-align: right;
+    padding-right: 27px;
+    border-top-right-radius: 5px;
   }
 `;
 
 export const Tbody = styled.tbody`
   background: #ffffff;
+  td:first-child {
+    padding-top: 13px;
+  }
   td:last-child {
-    img {
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-    }
+    padding-top: 13px;
+  }
+  tr:nth-child(odd) {
+    background: #f0f0f0;
   }
 `;
 
 export const Tfoot = styled.tfoot`
   background: #0d4137;
-  td:last-child {
-    border-bottom-right-radius: 5px;
-  }
   td:first-child {
     border-bottom-left-radius: 5px;
+  }
+  td:last-child {
+    border-bottom-right-radius: 5px;
   }
   td {
     color: #ffffff;
@@ -228,4 +262,35 @@ export const Tfoot = styled.tfoot`
     font-weight: 600;
     empty-cells: show;
   }
+`;
+export const Footer = styled.div`
+  display: flex;
+  float: right;
+  margin-top: 3px;
+  & svg {
+    margin-left: 19px;
+    cursor: pointer;
+    transform: rotate(90deg);
+    margin-top: 0px;
+    fill: white;
+    height: 18px;
+    width: 18px;
+    * {
+      fill: white;
+    }
+  }
+  & svg + svg {
+    margin-left: 25px;
+    margin-right: 38px;
+    cursor: pointer;
+    transform: rotate(270deg);
+    margin-top: 0px;
+    fill: white;
+    height: 18px;
+    width: 18px;
+  }
+`;
+export const FooterText = styled.p`
+  font-size: 16px;
+  font-weight: 700;
 `;
