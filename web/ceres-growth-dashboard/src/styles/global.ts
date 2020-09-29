@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
   *{
@@ -21,15 +21,22 @@ export default createGlobalStyle`
     right: 87.68%;
     top: 20px;
     bottom: 87.12%;
-
-    border: 1px solid #15594D;
-    box-sizing: border-box;
   }
+  `;
+export const Wrapper = styled.div`
+  margin-left: 80px;
+  margin-right: 80px;
+  margin-top: 45px;
+`;
 
-  #menuReports{
-    left: 10.9%;
-    top: 30.42%;
-  }
+export const Title = styled.h1`
+  height: 39px;
+  left: 331px;
+  top: 45px;
+  margin-bottom: 51px;
 
- 
+  font-style: normal;
+  font-weight: medium;
+  font-size: 32px;
+  color: #0d4137;
 `;

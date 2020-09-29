@@ -1,24 +1,5 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
-  min-width: 1026px;
-  margin-left: 80px;
-  margin-right: 80px;
-  margin-top: 45px;
-`;
-
-export const Title = styled.h1`
-  height: 39px;
-  left: 331px;
-  top: 45px;
-  margin-bottom: 51px;
-
-  font-style: normal;
-  font-weight: medium;
-  font-size: 32px;
-  color: #0d4137;
-`;
-
 export const TableOptions = styled.div`
   padding-bottom: 27px;
   & div + div {
@@ -43,7 +24,6 @@ export const Magnifier = styled.img`
 `;
 
 export const SearchBox = styled.input`
-  /* Lista de usuários */
   width: 100%;
   height: 47px;
 
@@ -272,9 +252,54 @@ export const Tbody = styled.tbody`
   }
   td:last-child {
     padding-top: 13px;
+    button {
+      position: block;
+      &:active,
+      &:focus {
+        * {
+          display: block;
+        }
+      }
+    }
   }
   tr:nth-child(odd) {
     background: #f0f0f0;
+  }
+`;
+
+export const ActionsMenu = styled.div`
+  margin-top: -10px;
+  display: none;
+  z-index: 1;
+  width: 160px;
+  height: 64px;
+  position: fixed;
+  background: white;
+  right: 29px;
+  filter: drop-shadow(0px 2px 6px rgba(0, 0, 0, 0.2));
+  border-radius: 5px;
+  transition: background 0.2s ease;
+  & div {
+    &:hover {
+      transition: background 0.2s ease;
+      background: #f0f0f0;
+    }
+    & button {
+      height: 32px;
+      font-family: 'Montserrat';
+      -webkit-font-smoothing: antialiased;
+      font-weight: 800;
+      font-size: 15px;
+      line-height: 20px;
+      color: #262121;
+    }
+  }
+  & div:first-child {
+    border-radius: 5px 5px 0px 0px;
+  }
+  & div + div {
+    border-top: 1px solid #f0f0f0;
+    border-radius: 0px 0px 5px 5px;
   }
 `;
 

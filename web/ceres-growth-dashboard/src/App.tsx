@@ -3,21 +3,21 @@ import { BrowserRouter } from 'react-router-dom';
 
 import Routes from './routes';
 import GlobalStyle from './styles/global';
-import { Grid, Row, ColMd2, ColMd10 } from './styles/grid';
+import { Grid, Row, ColMenu, ColRoutes } from './styles/grid';
 import Menu from './pages/header';
 
 const App: React.FC = () => (
   <>
     <Grid>
       <Row>
-        <ColMd2>
+        <ColMenu>
           <Menu />
-        </ColMd2>
-        <ColMd10>
+        </ColMenu>
+        <ColRoutes>
           <BrowserRouter>
             <Routes />
           </BrowserRouter>
-        </ColMd10>
+        </ColRoutes>
       </Row>
     </Grid>
     <GlobalStyle />

@@ -12,22 +12,18 @@ const Newfollowerchart: React.FC = () => {
           chartType="ColumnChart"
           loader={<div>Loading Chart</div>}
           data={[
-            ['', ''],
-            ['New York City, NY', 70],
-            ['Los Angeles, CA', 73],
-            ['Chicago, IL', 89],
-            ['Houston, TX', 23],
-            ['Philadelphia, PA', 45],
+            ['', 'Dias'],
+            ['Segunda', 70],
+            ['Terça', 73],
+            ['Quarta', 89],
+            ['Quinta', 23],
+            ['Sexta', 45],
+            ['Sábado', 45],
+            ['Domingo', 45],
           ]}
           options={{
-            title: 'Population of Largest U.S. Cities',
-            chartArea: { width: '50%' },
-            hAxis: {
-              title: 'Alcance Semanal',
-              minValue: 0,
-            },
+            chartArea: { width: '90%' },
           }}
-          legendToggle
         />
       </NewFollowers>
     </>

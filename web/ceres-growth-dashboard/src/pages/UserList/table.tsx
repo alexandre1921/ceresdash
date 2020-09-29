@@ -6,6 +6,7 @@ import {
   Tfoot,
   Footer,
   FooterText,
+  ActionsMenu,
 } from './styles';
 import { ReactComponent as Actions } from '../../assets/actions.svg';
 import { ReactComponent as Arrow } from '../../assets/arrow.svg';
@@ -13,7 +14,7 @@ import { ReactComponent as Checkbox } from '../../assets/checkbox.svg';
 import { ReactComponent as MarkedCheckbox } from '../../assets/markedCheckbox.svg';
 
 const Table: React.FC = () => {
-  const show = () => console.log('a');
+  const showMenu = () => console.log('a');
   const [checkbox, setCheckbox] = useState([
     [<Checkbox />, false],
     [<Checkbox />, false],
@@ -149,7 +150,15 @@ const Table: React.FC = () => {
                     );
                   if (index === tableInfo.thead.length - 1)
                     return (
-                      <button type="button" onClick={show}>
+                      <button type="button" onClick={showMenu}>
+                        <ActionsMenu>
+                          <div>
+                            <button type="button">Mais informações</button>
+                          </div>
+                          <div>
+                            <button type="button">Enviar mensagem</button>
+                          </div>
+                        </ActionsMenu>
                         <Actions />
                       </button>
                     );

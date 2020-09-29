@@ -25,15 +25,25 @@ const Reports: React.FC = () => {
       <Newfollowerchart />
       <Followers>
         <header>Número de Seguidores</header>
-
+        <div id="BodyFollowers">
+          <section id="FacebookNumber">
+            <p>14.572</p>
+          </section>
+          <section id="InstagramNumber">
+            <p>14.572</p>
+          </section>
+        </div>
         <footer>
           <div>
-            <strong>Facebook</strong>
-            <p> </p>
+            <strong>
+              Facebook
+              <p> </p>
+            </strong>
           </div>
-          <strong>Instagram</strong>
-
-          <p> </p>
+          <strong>
+            Instagram
+            <hr />
+          </strong>
         </footer>
       </Followers>
       <HeaderSegments>Segmentos com maior número de seguidores</HeaderSegments>

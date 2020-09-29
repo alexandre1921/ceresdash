@@ -26,7 +26,7 @@ export const Grafico = styled.div`
   position: absolute;
   width: 979px;
   height: 109px;
-  left: 288px;
+  left: 298px;
   top: 463px;
 `;
 
@@ -65,7 +65,7 @@ export const SearchBox = styled.input`
 export const SearchBoxDiv = styled.div`
   width: 35%;
   position: absolute;
-  margin-left: 78px;
+  margin-left: 51px;
   margin-top: 20px;
 `;
 
@@ -91,6 +91,13 @@ export const Followers = styled.div`
     line-height: 30px;
   }
 
+  #BodyFollowers {
+    position: absolute;
+    display: flex;
+    margin-left: 20px;
+    margin-top: 5px;
+  }
+
   footer {
     margin-top: 170px;
     background: #0d4137;
@@ -101,26 +108,77 @@ export const Followers = styled.div`
     strong {
       margin-top: 1px;
       text-align: center;
-      display: grid;
       font-family: Montserrat;
       font-style: normal;
       font-weight: 500;
       font-size: 20px;
       line-height: 33px;
+      display: flex;
+      margin-left: 55%;
+
+      color: #ffffff;
+
+      text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+    hr {
+      background: #e6bb9c;
+      height: 30px;
+      width: 30px;
+      border-radius: 50%;
+
+      margin-left: 10px;
+    }
+
+    p {
+      background: #5285d0;
+      height: 30px;
+      width: 30px;
+      border-radius: 50%;
+
+      margin-left: 15px;
+    }
+  }
+  #FacebookNumber {
+    background: #5285d0;
+    height: 160px;
+    width: 160px;
+    border-radius: 50%;
+    p {
+      text-align: center;
+      margin-top: 39%;
+
+      font-family: Montserrat;
+      font-style: normal;
+      font-weight: 800;
+      font-size: 30px;
+      line-height: 37px;
 
       color: #ffffff;
 
       text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
     }
   }
-  p {
-    background: #ffffff;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
 
-    margin-left: 20px;
-    display: grid;
+  #InstagramNumber {
+    background: #e6bb9c;
+    height: 160px;
+    width: 160px;
+    border-radius: 50%;
+    margin-left: 15px;
+    p {
+      text-align: center;
+      margin-top: 39%;
+
+      font-family: Montserrat;
+      font-style: normal;
+      font-weight: 800;
+      font-size: 30px;
+      line-height: 37px;
+
+      color: #ffffff;
+
+      text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+    }
   }
 `;
 
@@ -128,7 +186,7 @@ export const HeaderSegments = styled.div`
   position: absolute;
   width: 979px;
   height: 109px;
-  left: 288px;
+  left: 298px;
   top: 413px;
   color: #ffffff;
   background: #0d4137;
@@ -147,7 +205,7 @@ export const HeaderSegments = styled.div`
 
 export const NewFollowers = styled.div`
   margin-top: 109px;
-  margin-left: 71px;
+  margin-left: 51px;
   width: 374px;
   height: 289px;
 `;
