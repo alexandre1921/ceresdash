@@ -8,10 +8,10 @@ import {
   FooterText,
   ActionsMenu,
 } from './styles';
-import { ReactComponent as Actions } from '../../assets/actions.svg';
-import { ReactComponent as Arrow } from '../../assets/arrow.svg';
-import { ReactComponent as Checkbox } from '../../assets/checkbox.svg';
-import { ReactComponent as MarkedCheckbox } from '../../assets/markedCheckbox.svg';
+import { ReactComponent as Actions } from '../../images/actions.svg';
+import { ReactComponent as Arrow } from '../../images/arrow.svg';
+import { ReactComponent as Checkbox } from '../../images/checkbox.svg';
+import { ReactComponent as MarkedCheckbox } from '../../images/markedCheckbox.svg';
 
 const Table: React.FC = () => {
   const showMenu = () => console.log('a');

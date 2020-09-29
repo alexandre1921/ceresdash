@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Box,
   SearchBox,
-  Magnifier,
   TableOptions,
   SelectTitle,
   SelectButton,
@@ -14,8 +13,8 @@ import {
   SendButtonDiv,
 } from './styles';
 import { Row } from '../../styles/grid';
-import magnifier from '../../assets/magnifier.svg';
-import { ReactComponent as Arrow } from '../../assets/arrow.svg';
+import { ReactComponent as Magnifier } from '../../images/magnifier.svg';
+import { ReactComponent as Arrow } from '../../images/arrow.svg';
 
 const tableOptions: React.FC = () => {
   const selects = [
@@ -29,7 +28,7 @@ const tableOptions: React.FC = () => {
         <SearchBoxDiv>
           <Box>
             <SearchBox placeholder="Buscar" />
-            <Magnifier src={magnifier} alt="magnifier" />
+            <Magnifier />
           </Box>
         </SearchBoxDiv>
         {selects.map(value => (

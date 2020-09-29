@@ -1,9 +1,9 @@
 import React from 'react';
 
 import GlobalStyle from '../../styles/global';
-import { ReactComponent as IconeList } from '../../assets/list.svg';
-import { ReactComponent as IconeReports } from '../../assets/reports.svg';
-import { ReactComponent as LogoCeres } from '../../assets/logoCeres.svg';
+import { ReactComponent as IconeList } from '../../images/list.svg';
+import { ReactComponent as IconeReports } from '../../images/reports.svg';
+import { ReactComponent as LogoCeres } from '../../images/logoCeres.svg';
 import { MenuHeader, Menu, Items, Title } from './styles';
 
 const lick1 = 'ativo';
