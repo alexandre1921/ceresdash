@@ -1,6 +1,6 @@
 import React from 'react';
 import { Chart } from 'react-google-charts';
-import magnifier from '../../assets/magnifier.svg';
+import magnifier from '../../images/magnifier.svg';
 import Newfollowerchart from './new_followers_chart';
 
 import {
