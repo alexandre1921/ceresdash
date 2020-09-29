@@ -1,7 +1,7 @@
 import React from 'react';
 import { Title, Wrapper } from '../../styles/global';
-import TableOptions from './tableOptions';
-import Table from './table';
+import TableOptions from '../../components/TableOptions';
+import Table from '../../components/Table';
 import { Grid, Row, ColMd12 } from '../../styles/grid';
 
 const UserList: React.FC = () => {

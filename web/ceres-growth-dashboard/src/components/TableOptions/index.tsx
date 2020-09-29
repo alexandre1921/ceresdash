@@ -14,8 +14,8 @@ import {
   SendButtonDiv,
 } from './styles';
 import { Row } from '../../styles/grid';
-import magnifier from '../../assets/magnifier.svg';
-import { ReactComponent as Arrow } from '../../assets/arrow.svg';
+import magnifier from '../../images/magnifier.svg';
+import { ReactComponent as Arrow } from '../../images/arrow.svg';
 
 const tableOptions: React.FC = () => {
   const selects = [
