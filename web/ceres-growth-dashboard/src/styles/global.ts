@@ -19,7 +19,7 @@ export default createGlobalStyle`
     position: absolute;
     left: 25.9%;
     right: 87.68%;
-    top: 4.42%;
+    top: 20px;
     bottom: 87.12%;
 
     border: 1px solid #15594D;

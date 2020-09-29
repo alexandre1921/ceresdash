@@ -14,7 +14,7 @@ export const Items = styled.div`
   position: absolute;
   height: 120.83px;
   left: -0.38;
-  top: 220.37px;
+  top: 170.37px;
   background: #ffffff;
   a {
     width: 251.72px;
@@ -50,7 +50,7 @@ export const Title = styled.h1`
   width: 180.23px;
   height: 24.17px;
   left: 33.37px;
-  top: 149.02px;
+  top: 122.02px;
 
   font-family: Montserrat;
   font-style: normal;
