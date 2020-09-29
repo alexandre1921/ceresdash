@@ -13,14 +13,9 @@ export const Box = styled.div`
   border-radius: 5px;
   padding-right: 15px;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
-`;
-
-export const Magnifier = styled.img`
-  user-select: none;
-  -moz-user-select: none;
-  -webkit-user-drag: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
+  & svg {
+    margin-top: 15px;
+  }
 `;
 
 export const SearchBox = styled.input`
@@ -75,9 +70,6 @@ export const SelectTitle = styled.p`
     padding-bottom: 7px;
     max-width: 85%;
     flex: 1;
-  }
-  & img {
-    padding-top: 20px;
   }
 `;
 
