@@ -1,16 +1,16 @@
 import React from 'react';
 import { Chart } from 'react-google-charts';
 import magnifier from '../../assets/magnifier.svg';
+import Newfollowerchart from './new_followers_chart';
 
 import {
-  Title,
   Grafico,
   SearchBox,
   Box,
   Magnifier,
   SearchBoxDiv,
   Followers,
-  NewFollowers,
+  HeaderSegments,
 } from './styles';
 
 const Reports: React.FC = () => {
@@ -22,7 +22,7 @@ const Reports: React.FC = () => {
           <Magnifier src={magnifier} alt="magnifier" />
         </Box>
       </SearchBoxDiv>
-      <NewFollowers>teste</NewFollowers>
+      <Newfollowerchart />
       <Followers>
         <header>Número de Seguidores</header>
 
@@ -36,6 +36,7 @@ const Reports: React.FC = () => {
           <p> </p>
         </footer>
       </Followers>
+      <HeaderSegments>Segmentos com maior número de seguidores</HeaderSegments>
       <Grafico>
         <Chart
           chartType="BarChart"
@@ -61,9 +62,10 @@ const Reports: React.FC = () => {
             ['Humor', 25, '#262121', null],
           ]}
           options={{
-            title: 'Segmentos com maior númeor de seguidores',
+            // title: 'Segmentos com maior númeor de seguidores',
             width: 979,
-            height: 210,
+            height: 190,
+            top: 63,
             bar: { groupWidth: '35%' },
             legend: { position: 'none' },
           }}

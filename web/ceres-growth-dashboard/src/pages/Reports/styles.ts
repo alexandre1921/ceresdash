@@ -24,10 +24,10 @@ export const Grafico = styled.div`
   /* Lista de usuários */
 
   position: absolute;
-  width: 474px;
-  height: 89px;
+  width: 979px;
+  height: 109px;
   left: 288px;
-  top: 443px;
+  top: 463px;
 `;
 
 export const Box = styled.div`
@@ -74,7 +74,7 @@ export const Followers = styled.div`
   width: 374px;
   height: 289px;
   left: 893px;
-  top: 133px;
+  top: 109px;
   background: #ffffff;
 
   header {
@@ -124,4 +124,30 @@ export const Followers = styled.div`
   }
 `;
 
-export const NewFollowers = styled.div``;
+export const HeaderSegments = styled.div`
+  position: absolute;
+  width: 979px;
+  height: 109px;
+  left: 288px;
+  top: 413px;
+  color: #ffffff;
+  background: #0d4137;
+
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 25px;
+  line-height: 30px;
+  text-align: center;
+
+  color: #ffffff;
+
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+`;
+
+export const NewFollowers = styled.div`
+  margin-top: 109px;
+  margin-left: 71px;
+  width: 374px;
+  height: 289px;
+`;
