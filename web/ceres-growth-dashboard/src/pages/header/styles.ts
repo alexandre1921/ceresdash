@@ -1,17 +1,23 @@
 import styled from 'styled-components';
 
+export const MenuHeader = styled.div`
+  display: block;
+  justify-content: center;
+  & svg {
+    margin-top: 45px;
+    margin-left: 71px;
+    vertical-align: center;
+  }
+`;
+
 export const Menu = styled.div`
   position: absolute;
   width: 251.72px;
   height: 100%;
-  left: -0.86px;
-  top: 0px;
-
   background: #15594d;
 `;
 
 export const Items = styled.div`
-  position: absolute;
   height: 120.83px;
   left: -0.38;
   top: 220.37px;
@@ -56,11 +62,9 @@ export const Items = styled.div`
 `;
 
 export const Title = styled.h1`
-  position: absolute;
-  width: 180.23px;
-  height: 24.17px;
-  left: 33.37px;
-  top: 149.02px;
+  margin-top: 20px;
+  text-align: center;
+  margin-bottom: 30px;
 
   font-family: Montserrat;
   font-style: normal;
@@ -72,7 +76,6 @@ export const Title = styled.h1`
 `;
 
 export const menu1 = styled.button`
-  position: absolute;
   width: 251.72px;
   height: 60.41px;
   left: -0.86px;

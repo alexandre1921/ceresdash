@@ -1,24 +1,5 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
-  min-width: 1026px;
-  margin-left: 80px;
-  margin-right: 80px;
-  margin-top: 45px;
-`;
-
-export const Title = styled.h1`
-  height: 39px;
-  left: 331px;
-  top: 45px;
-  margin-bottom: 51px;
-
-  font-style: normal;
-  font-weight: medium;
-  font-size: 32px;
-  color: #0d4137;
-`;
-
 export const TableOptions = styled.div`
   padding-bottom: 27px;
   & div + div {

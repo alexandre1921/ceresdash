@@ -1,11 +1,10 @@
 import React from 'react';
 
 import GlobalStyle from '../../styles/global';
-import iconeList from '../../assets/list.svg';
-import iconeReports from '../../assets/reports.svg';
-import logoCeres from '../../assets/logoCeres.svg';
-
-import { Menu, Items, Title } from './styles';
+import { ReactComponent as IconeList } from '../../assets/list.svg';
+import { ReactComponent as IconeReports } from '../../assets/reports.svg';
+import { ReactComponent as LogoCeres } from '../../assets/logoCeres.svg';
+import { MenuHeader, Menu, Items, Title } from './styles';
 
 const lick1 = 'ativo';
 const lick2 = 'ativo';
@@ -14,22 +13,21 @@ const Header: React.FC = () => {
   return (
     <>
       <Menu>
-        <div>
-          <img id="logo" src={logoCeres} alt="Logo" />
+        <MenuHeader>
+          <LogoCeres />
           <Title>Ceres Dashboard</Title>
-        </div>
+        </MenuHeader>
         <Items>
           <hr />
-          <div />
           <a href="/" id="intem1" className={lick1}>
-            <img src={iconeReports} alt="Relatórios" />
+            <IconeReports />
             <div>
               <strong>Relatórios</strong>
             </div>
           </a>
           <div />
           <a href="/list" id="item2" className={lick2}>
-            <img src={iconeList} alt="Lista de Usuários" />
+            <IconeList />
             <div>
               <strong>Lista de Usuários</strong>
             </div>

@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
   *{
@@ -13,23 +13,22 @@ export default createGlobalStyle`
     font-family: 'Montserrat';
     -webkit-font-smoothing: antialiased;
   }
-  
+`;
 
-  #logo {
-    position: absolute;
-    left: 25.9%;
-    right: 87.68%;
-    top: 4.42%;
-    bottom: 87.12%;
+export const Wrapper = styled.div`
+  margin-left: 80px;
+  margin-right: 80px;
+  margin-top: 45px;
+`;
 
-    border: 1px solid #15594D;
-    box-sizing: border-box;
-  }
+export const Title = styled.h1`
+  height: 39px;
+  left: 331px;
+  top: 45px;
+  margin-bottom: 51px;
 
-  #menuReports{
-    left: 10.9%;
-    top: 30.42%;
-  }
-
- 
+  font-style: normal;
+  font-weight: medium;
+  font-size: 32px;
+  color: #0d4137;
 `;

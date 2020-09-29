@@ -1,5 +1,5 @@
 import React from 'react';
-import { Wrapper, Title } from './styles';
+import { Title, Wrapper } from '../../styles/global';
 import TableOptions from './tableOptions';
 import Table from './table';
 import { Grid, Row, ColMd12 } from '../../styles/grid';

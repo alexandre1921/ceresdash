@@ -58,3 +58,10 @@ export const ColMd11 = styled.div`
 export const ColMd12 = styled.div`
   width: 100%;
 `;
+
+export const ColMenu = styled.div`
+  min-width: 251.72px;
+`;
+export const ColRoutes = styled.div`
+  width: 100%;
+`;
