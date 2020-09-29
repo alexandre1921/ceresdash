@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Menu = styled.div`
   position: absolute;
   width: 251.72px;
-  height: 1024px;
+  height: 100%;
   left: -0.86px;
   top: 0px;
 
@@ -17,7 +17,7 @@ export const Items = styled.div`
   top: 170.37px;
   background: #ffffff;
   a {
-    width: 251.72px;
+    width: 252px;
     padding: 18px;
     display: block;
     text-decoration: none;
@@ -25,9 +25,13 @@ export const Items = styled.div`
 
     display: flex;
     align-items: center;
+    transition: background 0.3s ease;
     &:hover {
+      padding-left: 14px;
+      float: right;
+      width: 248px;
       background: #0d4137;
-      transform: translateX(5px);
+      transition: background 0.3s ease;
     }
   }
 
@@ -42,6 +46,12 @@ export const Items = styled.div`
       color: #ffffff;
       font-family: Montserrat;
     }
+  }
+  hr {
+    height: 1px;
+    border: none;
+    background: #0d4137;
+    border-radius: 0px;
   }
 `;
 

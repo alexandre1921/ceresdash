@@ -34,7 +34,13 @@ export const Box = styled.div`
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
 `;
 
-export const Magnifier = styled.img``;
+export const Magnifier = styled.img`
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+`;
 
 export const SearchBox = styled.input`
   /* Lista de usuários */
@@ -59,7 +65,6 @@ export const SearchBox = styled.input`
 `;
 
 export const Select = styled.div`
-  /* Lista de usuários */
   width: 100%;
   height: 47px;
   font-weight: 600;
@@ -97,8 +102,6 @@ export const SelectTitle = styled.p`
 `;
 
 export const SelectButton = styled.a`
-  /* Lista de usuários */
-
   height: 47px;
   width: 100%;
   display: inline-block;
@@ -109,6 +112,11 @@ export const SelectButton = styled.a`
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
   border-radius: 5px;
   transition: background 0.4s ease;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 
   & svg {
     margin-top: 20px;
@@ -119,7 +127,6 @@ export const SelectButton = styled.a`
     & {
       transition: background 0.2s ease;
       background: #d3d3d3;
-      height: 50px;
     }
     & div {
       display: block;
@@ -137,7 +144,10 @@ export const SelectButton = styled.a`
 `;
 
 export const SelectList = styled.div`
+  position: fixed;
+  min-width: 121px;
   height: 47px;
+  filter: drop-shadow(0px 2px 6px rgba(0, 0, 0, 0.15));
 `;
 
 export const SelectOption = styled.a`
@@ -189,7 +199,14 @@ export const SendButton = styled.button`
   }
 `;
 
-export const Table = styled.table`
+export const TableComponent = styled.table`
+  svg {
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
   border-spacing: 0px;
   width: 100%;
   th {
