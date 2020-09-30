@@ -20,7 +20,7 @@ export const Menu = styled.div`
 export const Items = styled.div`
   height: 120.83px;
   left: -0.38;
-  top: 220.37px;
+  top: 170.37px;
   background: #ffffff;
   a {
     width: 252px;

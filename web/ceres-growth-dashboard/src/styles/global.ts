@@ -13,8 +13,16 @@ export default createGlobalStyle`
     font-family: 'Montserrat';
     -webkit-font-smoothing: antialiased;
   }
-`;
+  
 
+  #logo {
+    position: absolute;
+    left: 25.9%;
+    right: 87.68%;
+    top: 20px;
+    bottom: 87.12%;
+  }
+  `;
 export const Wrapper = styled.div`
   margin-left: 80px;
   margin-right: 80px;

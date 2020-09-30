@@ -7,7 +7,7 @@ import { ReactComponent as LogoCeres } from '../../images/logoCeres.svg';
 import { MenuHeader, Menu, Items, Title } from './styles';
 
 const lick1 = 'ativo';
-const lick2 = 'ativo';
+const lick2 = 'inativo';
 
 const Header: React.FC = () => {
   return (
