@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const ModalComponent = styled.div`
-  margin-top: 183px;
+  margin-top: 100px;
   z-index: 1;
   position: absolute;
   width: 100%;
@@ -51,6 +51,10 @@ export const ModalHeader = styled.div`
     margin-right: 10px;
     width: 26px;
     min-width: 26px;
+    & button {
+      background: none;
+      border: none;
+    }
     & svg {
       transition: fill 0.2s ease;
       box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
