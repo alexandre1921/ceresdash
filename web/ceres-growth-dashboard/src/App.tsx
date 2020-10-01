@@ -6,22 +6,24 @@ import GlobalStyle from './styles/global';
 import { Grid, Row, ColMenu, ColRoutes } from './styles/grid';
 import Menu from './pages/header';
 
-const App: React.FC = () => (
-  <>
-    <Grid>
-      <Row>
-        <ColMenu>
-          <Menu />
-        </ColMenu>
-        <ColRoutes>
-          <BrowserRouter>
-            <Routes />
-          </BrowserRouter>
-        </ColRoutes>
-      </Row>
-    </Grid>
-    <GlobalStyle />
-  </>
-);
+const App: React.FC = () => {
+  return (
+    <>
+      <Grid>
+        <Row>
+          <ColMenu>
+            <Menu />
+          </ColMenu>
+          <ColRoutes>
+            <BrowserRouter>
+              <Routes />
+            </BrowserRouter>
+          </ColRoutes>
+        </Row>
+      </Grid>
+      <GlobalStyle />
+    </>
+  );
+};
 
 export default App;
