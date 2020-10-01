@@ -1,19 +1,16 @@
 import React from 'react';
 import {
-  Box,
-  SearchBox,
   TableOptions,
   SelectTitle,
   SelectButton,
   SelectList,
   SelectOption,
   SendButton,
-  SearchBoxDiv,
   SelectDiv,
   SendButtonDiv,
 } from './styles';
 import { Row } from '../../styles/grid';
-import { ReactComponent as Magnifier } from '../../images/magnifier.svg';
+import SearchBox from '../Searchbox';
 import { ReactComponent as Arrow } from '../../images/arrow.svg';
 
 const tableOptions: React.FC = () => {
@@ -25,12 +22,7 @@ const tableOptions: React.FC = () => {
   return (
     <TableOptions>
       <Row>
-        <SearchBoxDiv>
-          <Box>
-            <SearchBox placeholder="Buscar" />
-            <Magnifier />
-          </Box>
-        </SearchBoxDiv>
+        <SearchBox />
         {selects.map(value => (
           <SelectDiv>
             <SelectButton href="#">

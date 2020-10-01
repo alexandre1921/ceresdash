@@ -7,38 +7,6 @@ export const TableOptions = styled.div`
   }
 `;
 
-export const Box = styled.div`
-  display: flex;
-  background: #ffffff;
-  border-radius: 5px;
-  padding-right: 15px;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
-  & svg {
-    margin-top: 15px;
-  }
-`;
-
-export const SearchBox = styled.input`
-  width: 100%;
-  height: 47px;
-
-  padding-top: 2px;
-  padding-right: 6px;
-  padding-left: 12px;
-
-  background: #ffffff;
-  border-style: none;
-  border-radius: 5px;
-
-  &::placeholder {
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 195px;
-    color: #929090;
-  }
-`;
-
 export const Select = styled.div`
   width: 100%;
   height: 47px;
@@ -171,9 +139,6 @@ export const SendButton = styled.button`
   }
 `;
 
-export const SearchBoxDiv = styled.div`
-  width: 100%;
-`;
 export const SelectDiv = styled.div`
   min-width: 147px;
 `;
