@@ -1,17 +1,8 @@
 import React from 'react';
-import {
-  TableOptions,
-  SelectTitle,
-  SelectButton,
-  SelectList,
-  SelectOption,
-  SendButton,
-  SelectDiv,
-  SendButtonDiv,
-} from './styles';
+import { TableOptions, SendButton, SendButtonDiv } from './styles';
 import { Row } from '../../styles/grid';
 import SearchBox from '../Searchbox';
-import { ReactComponent as Arrow } from '../../images/arrow.svg';
+import Select from '../Select';
 
 const tableOptions: React.FC = () => {
   const selects = [
@@ -24,21 +15,7 @@ const tableOptions: React.FC = () => {
       <Row>
         <SearchBox />
         {selects.map(value => (
-          <SelectDiv>
-            <SelectButton href="#">
-              <>
-                <SelectTitle>
-                  <p>{value.title}</p>
-                  <Arrow />
-                </SelectTitle>
-              </>
-              <SelectList>
-                {value.options.map(option => (
-                  <SelectOption href="#">{option}</SelectOption>
-                ))}
-              </SelectList>
-            </SelectButton>
-          </SelectDiv>
+          <Select selectInfo={value} />
         ))}
         <SendButtonDiv>
           <SendButton>Enviar mensagem</SendButton>

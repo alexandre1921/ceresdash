@@ -133,13 +133,10 @@ const Table: React.FC = () => {
           switch (modal) {
             case 'list':
               return <ModalList />;
-              break;
             case 'sendMessage':
               return <ModalSendMessage />;
-              break;
             default:
               return null;
-              break;
           }
         })()}
       </Modal>
