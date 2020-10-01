@@ -6,23 +6,33 @@ const Newfollowerchart: React.FC = () => {
   return (
     <>
       <NewFollowers>
+        <header>
+          <div id="LeftTexts">
+            <h2>Novos Seguidores</h2>
+            <h3>Alcance Semanal</h3>
+          </div>
+          <div id="RightTexts">
+            <p>Média Diária: 56,7</p>
+            <p>Total: 396</p>
+          </div>
+        </header>
         <Chart
-          width={574}
-          height={289}
+          height={201}
           chartType="ColumnChart"
-          loader={<div>Loading Chart</div>}
+          // loader={<div>Loading Chart</div>}
           data={[
-            ['', 'Dias'],
-            ['Segunda', 70],
-            ['Terça', 73],
-            ['Quarta', 89],
-            ['Quinta', 23],
-            ['Sexta', 45],
-            ['Sábado', 45],
-            ['Domingo', 45],
+            ['Elemento', 'Segidores', { role: 'style' }],
+            ['Segunda', 70, 'color: #1D1919'],
+            ['Terça', 73, 'color: #1D1919'],
+            ['Quarta', 89, 'color: #1D1919'],
+            ['Quinta', 23, 'color: #1D1919'],
+            ['Sexta', 45, 'color: #1D1919'],
+            ['Sábado', 45, 'color: #1D1919'],
+            ['Domingo', 45, 'color: #1D1919'],
           ]}
           options={{
-            chartArea: { width: '90%' },
+            chartArea: { width: '91%' },
+            legend: { position: 'none' },
           }}
         />
       </NewFollowers>

@@ -2,6 +2,7 @@ import React from 'react';
 import { Chart } from 'react-google-charts';
 import magnifier from '../../images/magnifier.svg';
 import Newfollowerchart from './new_followers_chart';
+import { ReactComponent as Arrow } from '../../images/arrow.svg';
 
 import {
   Grafico,
@@ -10,10 +11,15 @@ import {
   Magnifier,
   SearchBoxDiv,
   Followers,
-  HeaderSegments,
+  SelectButton,
+  SelectDiv,
+  SelectOption,
+  SelectList,
+  SelectTitle,
 } from './styles';
 
 const Reports: React.FC = () => {
+  const selects = [{ title: 'Filtros', options: ['Opc 1', 'Opc 2', 'Opc 3'] }];
   return (
     <>
       <SearchBoxDiv>
@@ -22,6 +28,23 @@ const Reports: React.FC = () => {
           <Magnifier src={magnifier} alt="magnifier" />
         </Box>
       </SearchBoxDiv>
+      {selects.map(value => (
+        <SelectDiv>
+          <SelectButton href="#">
+            <>
+              <SelectTitle>
+                <p>{value.title}</p>
+                <Arrow />
+              </SelectTitle>
+            </>
+            <SelectList>
+              {value.options.map(option => (
+                <SelectOption href="#">{option}</SelectOption>
+              ))}
+            </SelectList>
+          </SelectButton>
+        </SelectDiv>
+      ))}
       <Newfollowerchart />
       <Followers>
         <header>Número de Seguidores</header>
@@ -34,20 +57,22 @@ const Reports: React.FC = () => {
           </section>
         </div>
         <footer>
-          <div>
+          <div id="CaptionFollowers">
+            <div>
+              <strong>
+                Facebook
+                <p> </p>
+              </strong>
+            </div>
             <strong>
-              Facebook
-              <p> </p>
+              Instagram
+              <hr />
             </strong>
           </div>
-          <strong>
-            Instagram
-            <hr />
-          </strong>
         </footer>
       </Followers>
-      <HeaderSegments>Segmentos com maior número de seguidores</HeaderSegments>
       <Grafico>
+        <header>Segmentos com maior número de seguidores</header>
         <Chart
           chartType="BarChart"
           loader={<div>Loading Chart</div>}
@@ -55,7 +80,7 @@ const Reports: React.FC = () => {
             [
               'Element',
               'Porcentagem',
-              { role: 'style', backgroud: '#0d4137' },
+              { role: 'style', backgroud: '#262121' },
               {
                 sourceColumn: 0,
                 role: 'annotation',
@@ -63,7 +88,7 @@ const Reports: React.FC = () => {
                 calc: 'stringify',
               },
             ],
-            ['Música', 83, '#262121', null],
+            ['Música', 93, '#262121', null],
             ['Memes', 72, '#262121', null],
             ['Esporte', 65, '#262121', null],
             ['Saúde', 49, '#262121', null],
@@ -73,14 +98,12 @@ const Reports: React.FC = () => {
           ]}
           options={{
             // title: 'Segmentos com maior númeor de seguidores',
-            width: 979,
-            height: 190,
-            top: 63,
+            height: 173,
+            chartArea: { width: '80%' },
             bar: { groupWidth: '35%' },
             legend: { position: 'none' },
           }}
           // For tests
-          rootProps={{ 'data-testid': '6' }}
         />
       </Grafico>
     </>
