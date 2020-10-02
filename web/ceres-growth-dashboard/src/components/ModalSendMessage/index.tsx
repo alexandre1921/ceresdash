@@ -11,7 +11,11 @@ import {
 
 import { ReactComponent as Close } from '../../images/close.svg';
 
-const modal: React.FC = () => {
+interface Props {
+  closeModal: { (): void };
+}
+
+const ModalSendMessage: React.FC<Props> = ({ closeModal }: Props) => {
   return (
     <>
       <ModalBackground />
@@ -22,15 +26,7 @@ const modal: React.FC = () => {
               <p>Conteúdo da mensagem</p>
             </div>
             <div>
-              <button
-                type="button"
-                onClick={() => {
-                  const rootModal = document.getElementById('root-modal');
-                  if (rootModal != null) {
-                    rootModal.style.display = 'none';
-                  }
-                }}
-              >
+              <button type="button" onClick={closeModal}>
                 <Close />
               </button>
             </div>
@@ -57,4 +53,4 @@ const modal: React.FC = () => {
     </>
   );
 };
-export default modal;
+export default ModalSendMessage;

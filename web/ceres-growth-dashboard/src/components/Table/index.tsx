@@ -124,17 +124,29 @@ const Table: React.FC = () => {
       </Footer>,
     ],
   };
-  const [isOpen, setIsOpen] = useState(false);
-  const [modal, setModal] = useState('list');
+  const [[isOpen, modal], setModal] = useState([false, '']);
+
   return (
     <>
       <Modal open={isOpen}>
         {(() => {
           switch (modal) {
             case 'list':
-              return <ModalList />;
+              return (
+                <ModalList
+                  closeModal={() => {
+                    setModal([false, '']);
+                  }}
+                />
+              );
             case 'sendMessage':
-              return <ModalSendMessage />;
+              return (
+                <ModalSendMessage
+                  closeModal={() => {
+                    setModal([false, '']);
+                  }}
+                />
+              );
             default:
               return null;
           }
@@ -173,14 +185,7 @@ const Table: React.FC = () => {
                               <button
                                 type="button"
                                 onClick={() => {
-                                  setIsOpen(true);
-                                  setModal('list');
-                                  const rootModal = document.getElementById(
-                                    'root-modal',
-                                  );
-                                  if (rootModal != null) {
-                                    rootModal.style.display = '';
-                                  }
+                                  setModal([true, 'list']);
                                 }}
                               >
                                 Mais informações
@@ -190,14 +195,7 @@ const Table: React.FC = () => {
                               <button
                                 type="button"
                                 onClick={() => {
-                                  setIsOpen(true);
-                                  setModal('sendMessage');
-                                  const rootModal = document.getElementById(
-                                    'root-modal',
-                                  );
-                                  if (rootModal != null) {
-                                    rootModal.style.display = '';
-                                  }
+                                  setModal([true, 'sendMessage']);
                                 }}
                               >
                                 Enviar mensagem

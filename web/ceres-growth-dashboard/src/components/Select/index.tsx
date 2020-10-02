@@ -8,14 +8,14 @@ import {
 } from './styles';
 import { ReactComponent as Arrow } from '../../images/arrow.svg';
 
-interface props {
+interface Props {
   selectInfo: {
     title: string;
     options: Array<string>;
   };
 }
 
-const Select: React.FC<props> = Props => {
+const Select: React.FC<Props> = (Props: Props) => {
   const { title, options } = Props.selectInfo;
   return (
     <SelectDiv>
