@@ -1,52 +1,29 @@
 import React from 'react';
-import magnifier from '../../images/magnifier.svg';
-import Newfollowerchart from './new_followers_chart';
-import { ReactComponent as Arrow } from '../../images/arrow.svg';
-import Mostfollowerssegments from './mostfollowerssegments';
-import Numberoffollowers from './numberoffollowers';
-
-import {
-  SearchBox,
-  Box,
-  Magnifier,
-  SearchBoxDiv,
-  SelectButton,
-  SelectDiv,
-  SelectOption,
-  SelectList,
-  SelectTitle,
-} from './styles';
+import Newfollowerchart from '../../components/Graphics/new_followers_chart';
+import Mostfollowerssegments from '../../components/Graphics/mostfollowerssegments';
+import Numberoffollowers from '../../components/Graphics/numberoffollowers';
+import SearchBox from '../../components/SearchboxReports/index';
+import Select from '../../components/SelectReports/index';
+import { Grid, Row, ColMd12 } from '../../styles/grid';
 
 const Reports: React.FC = () => {
-  const selects = [{ title: 'Filtros', options: ['Opc 1', 'Opc 2', 'Opc 3'] }];
   return (
     <>
-      <SearchBoxDiv>
-        <Box>
-          <SearchBox placeholder="Buscar" />
-          <Magnifier src={magnifier} alt="magnifier" />
-        </Box>
-      </SearchBoxDiv>
-      {selects.map(value => (
-        <SelectDiv>
-          <SelectButton href="#">
-            <>
-              <SelectTitle>
-                <p>{value.title}</p>
-                <Arrow />
-              </SelectTitle>
-            </>
-            <SelectList>
-              {value.options.map(option => (
-                <SelectOption href="#">{option}</SelectOption>
-              ))}
-            </SelectList>
-          </SelectButton>
-        </SelectDiv>
-      ))}
-      <Newfollowerchart />
-      <Numberoffollowers />
-      <Mostfollowerssegments />
+      <Grid>
+        <Row>
+          <ColMd12>
+            <SearchBox />
+            <Select />
+          </ColMd12>
+        </Row>
+        <ColMd12>
+          <Newfollowerchart />
+          <Numberoffollowers />
+        </ColMd12>
+        <ColMd12>
+          <Mostfollowerssegments />
+        </ColMd12>
+      </Grid>
     </>
   );
 };
