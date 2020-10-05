@@ -4,5 +4,9 @@
   "port": 54320,
   "username": "user",
   "password": "password",
-  "database": "ceres_growth"
+  "database": "ceres_growth",
+  "migrations": ["./src/database/migrations/*.ts"],
+  "cli": {
+    "migrationsDir": "./src/database/migrations"
+  }
 }
