@@ -2,33 +2,47 @@ import { getCustomRepository } from 'typeorm';
 
 import AppError from '../errors/AppError';
 
-// import instagramUserContent from '../json/instagramUserContent.json';
+import instagramUserContent from '../json/userContent.json';
 import InstagramUser from '../models/InstagramUser';
 import InstagramUserRepository from '../repositories/IntagramUsersRepository';
 
 class CreateInstagramUser {
-  public async execute(): Promise<InstagramUser> {
+  public async execute(): Promise<boolean> {
     const instagramUserRepository = getCustomRepository(
       InstagramUserRepository,
     );
+    instagramUserContent.forEach((value: InstagramUser) => {
+      const {
+        username,
+        full_name,
+        biography,
+        id,
+        business_email,
+        connected_fb_page,
+        is_business_account,
+        is_private,
+        is_verified,
+        external_url,
+        success,
+      } = value;
 
-    const instagramUser = instagramUserRepository.create({
-      username: '21098421michelepabritez',
-      full_name: '28421Michele Anicias Britez',
-      biography: '28421Servidora pública na UTFPR',
-      id: '19318952461400562',
-      business_email: '32842111null',
-      connected_fb_page: '2null',
-      is_business_account: false,
-      is_private: true,
-      is_verified: false,
-      external_url: '2null',
-      success: true,
+      const instagramUser = instagramUserRepository.create({
+        username,
+        full_name,
+        biography,
+        id,
+        business_email,
+        connected_fb_page,
+        is_business_account,
+        is_private,
+        is_verified,
+        external_url,
+        success,
+      });
+
+      instagramUserRepository.save(instagramUser);
     });
-
-    instagramUserRepository.save(instagramUser);
-
-    return instagramUser;
+    return true;
   }
 }
 
