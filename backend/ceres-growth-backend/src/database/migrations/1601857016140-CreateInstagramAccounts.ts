@@ -5,12 +5,13 @@ export default class CreateInstagramAccounts1601857016140
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'instagram_accounts',
+        name: 'instagram_users',
         columns: [
           {
             name: 'id',
             type: 'varchar',
             isPrimary: true,
+            isUnique: true,
             isNullable: false,
             length: '30',
           },
@@ -47,7 +48,6 @@ export default class CreateInstagramAccounts1601857016140
             name: 'business_email',
             type: 'varchar',
             isNullable: false,
-            isUnique: true,
             length: '255',
           },
           {
@@ -70,22 +70,12 @@ export default class CreateInstagramAccounts1601857016140
             type: 'boolean',
             isNullable: false,
           },
-          {
-            name: 'created_on',
-            type: 'timestamp with time zone',
-            isNullable: false,
-          },
-          {
-            name: 'updated_on',
-            type: 'timestamp with time zone',
-            isNullable: false,
-          },
         ],
       }),
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('instagram_accounts');
+    await queryRunner.dropTable('instagram_users');
   }
 }
