@@ -4,10 +4,13 @@ import GetInstagramContent from '../services/CreateInstagramUser';
 
 const webScraping = Router();
 
-webScraping.get('/users/instagram', async (request, response) => {
+webScraping.post('/users/instagram', async (request, response) => {
   try {
     const instagramContent = new GetInstagramContent();
-    const content = await instagramContent.execute();
+    const content = await instagramContent.execute({
+      username: request.query.username?.toString(),
+      id: request.query.id?.toString(),
+    });
     return response.status(200).json(content);
   } catch (err) {
     console.log(err);
