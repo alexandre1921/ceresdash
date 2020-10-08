@@ -84,7 +84,7 @@ class CreateInstagramUser {
     // const page = await browser.newPage();
 
     // await CreateSessionInSocialMedia(page);
-    // // const followers = await GetFollowers(page, 'alexandre1921');
+    // const followers = await GetFollowers(page, 'alexandre1921');
     // console.log(userContent);
 
     // const data = await fetch(`https://www.instagram.com/${username}/?__a=1`)
