@@ -12,9 +12,8 @@ export default async (
 ): Promise<void> => {
   await page.goto(link);
   await page.waitForSelector(`input[name="${inputs[0].name}"]`);
-  await inputs.forEach(async (input: Input) => {
-    await page.type(`input[name="${input.name}"]`, input.value);
-  });
+  await page.type(`input[name="${inputs[0].name}"]`, inputs[0].value);
+  await page.type(`input[name="${inputs[1].name}"]`, inputs[1].value);
   await page.click('button[type="submit"]');
   await page.waitForNavigation();
 };
