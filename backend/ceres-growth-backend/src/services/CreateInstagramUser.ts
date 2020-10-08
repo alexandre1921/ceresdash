@@ -2,7 +2,6 @@ import puppeteer from 'puppeteer';
 import { getCustomRepository } from 'typeorm';
 import fetch, { Response } from 'node-fetch';
 import { existsSync } from 'fs';
-import FormData = require('form-data');
 import CreateSessionInSocialMedia from './CreateSessionInSocialMedia';
 
 import AppError from '../errors/AppError';
@@ -10,6 +9,7 @@ import AppError from '../errors/AppError';
 import InstagramUser from '../models/InstagramUser';
 import InstagramUserRepository from '../repositories/IntagramUsersRepository';
 import CreateJson from './CreateJson';
+import FormData = require('form-data');
 
 interface Request {
   username: string | undefined;
@@ -108,38 +108,7 @@ class CreateInstagramUser {
     //     };
     //   });
 
-    let sessionId = '';
-    const sessionIdFilePath = `${__dirname}/../json/sessionId.json`;
-    if (!existsSync(sessionIdFilePath)) {
-      const createEncPassword = (pwd: string) => {
-        return `#PWD_INSTAGRAM_BROWSER:0:${Date.now()}:${pwd}`;
-      };
-
-      const formData = new FormData();
-      formData.append('username', 'mohammed_kibe');
-      formData.append('enc_password', createEncPassword('Inteligente01'));
-
-      const login = await fetch(
-        `https://www.instagram.com/accounts/login/ajax/`,
-        {
-          method: 'POST',
-          body: formData,
-          headers: {
-            'X-CSRFToken': 'csrftoken',
-          },
-        },
-      ).then(res => res.headers.get('set-cookie')); // res.headers.get('set-cookie')
-
-      sessionId = `sessionid=${
-        login?.toString().split('sessionid=')[1].split(';')[0]
-      }`;
-
-      console.log('Criando Login');
-      CreateJson(sessionIdFilePath, sessionId, 'sessionId criado com sucesso');
-    } else {
-      console.log('Carregando Login');
-      sessionId = require(sessionIdFilePath);
-    }
+    const sessionId = await CreateSessionInSocialMedia();
 
     try {
       let followers: any[] = [];
@@ -159,7 +128,7 @@ class CreateInstagramUser {
           )}`,
           {
             headers: {
-              cookie: sessionId,
+              cookie: typeof sessionId === 'string' ? sessionId : '',
             },
           },
         )
@@ -178,7 +147,7 @@ class CreateInstagramUser {
             );
           });
       }
-      console.log({ followers, success: true });
+      console.log({ followers: followers[0], success: true });
     } catch (err) {
       console.log('Invalid username');
     }

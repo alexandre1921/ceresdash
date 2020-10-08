@@ -1,4 +1,5 @@
-import { Page } from 'puppeteer-core';
+import fetch from 'node-fetch';
+import FormData = require('form-data');
 
 interface Input {
   name: string;
@@ -6,14 +7,18 @@ interface Input {
 }
 
 export default async (
-  page: Page,
   link: string,
   inputs: Input[],
-): Promise<void> => {
-  await page.goto(link);
-  await page.waitForSelector(`input[name="${inputs[0].name}"]`);
-  await page.type(`input[name="${inputs[0].name}"]`, inputs[0].value);
-  await page.type(`input[name="${inputs[1].name}"]`, inputs[1].value);
-  await page.click('button[type="submit"]');
-  await page.waitForNavigation();
+): Promise<string | null> => {
+  const formData = new FormData();
+  inputs.map(input => formData.append(input.name, input.value));
+
+  const login = await fetch(link, {
+    method: 'POST',
+    body: formData,
+    headers: {
+      'X-CSRFToken': 'csrftoken',
+    },
+  }).then(res => res.headers.get('set-cookie')); // res.headers.get('set-cookie')
+  return login;
 };
