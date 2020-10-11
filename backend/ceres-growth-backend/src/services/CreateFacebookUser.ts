@@ -10,13 +10,16 @@ import InstagramUser from '../models/InstagramUser';
 import InstagramUserRepository from '../repositories/IntagramUsersRepository';
 import CreateJson from './CreateJson';
 import FormData = require('form-data');
+import CreateSessionFaceBook from './CreateSessionFaceBook';
+import { response } from 'express';
 
 interface Request {
   username: string | undefined;
   id: string | undefined;
+
 }
 
-class CreateInstagramUser {
+class CreateFacebookUser {
   public async execute({ username, id }: Request): Promise<boolean> {
     // const instagramUserRepository = getCustomRepository(
     //   InstagramUserRepository,
@@ -108,46 +111,76 @@ class CreateInstagramUser {
     //     };
     //   });
 
-    const sessionId = await CreateSessionInSocialMedia();
+    const sessionId = await CreateSessionFaceBook();
 
     try {
       let followers: any[] = [];
-      let after = null;
-      let has_next = true;
-      while (has_next) {
-        // eslint-disable-next-line no-await-in-loop
-        await fetch(
-          `https://www.instagram.com/graphql/query/?query_hash=c76146de99bb02f6415203be841dd25a&variables=${encodeURIComponent(
-            JSON.stringify({
-              id: '8064976408',
-              include_reel: true,
-              fetch_mutual: true,
-              first: 50,
-              after,
-            }),
-          )}`,
-          {
-            headers: {
-              cookie: typeof sessionId === 'string' ? sessionId : '',
-            },
-          },
-        )
-          // eslint-disable-next-line no-loop-func
-          .then(res1 => res1.json())
-          // eslint-disable-next-line no-loop-func
-          .then(res2 => {
-            has_next = res2.data.user.edge_followed_by.page_info.has_next_page;
-            after = res2.data.user.edge_followed_by.page_info.end_cursor;
-            followers = followers.concat(
-              res2.data.user.edge_followed_by.edges.map(
-                ({ node }: { node: { username: string } }) => {
-                  return node.username;
-                },
-              ),
-            );
-          });
-      }
-      console.log({ followers: followers[4], success: true });
+      /* let followers: any[] = [];
+       let after = null;
+       let has_next = true;
+       while (has_next) {
+         // eslint-disable-next-line no-await-in-loop
+         await fetch(
+           `https://www.instagram.com/graphql/query/?query_hash=c76146de99bb02f6415203be841dd25a&variables=${encodeURIComponent(
+             JSON.stringify({
+               id: '8064976408',
+               include_reel: true,
+               fetch_mutual: true,
+               first: 50,
+               after,
+             }),
+           )}`,
+           {
+             headers: {
+               cookie: typeof sessionId === 'string' ? sessionId : '',
+             },
+           },
+         )*/
+      let text = "AQHRRlNKmICgyWxzKKG9ljOm3PnEG8jLXECJCYnHjz3D5vH-2s1TH1RutqvB8_0G2Zoq1LUFHh2OYnwvWm3iQV8UcQ";
+      let fb_dtsg = require("DTSG").getToken();
+
+
+      let cursorgeral = 'AQHRCXgomrCHr96pJzyYbCl5QUG4Yu_QiEDce5P5vpSNTm7E20dW-KB5ttc4Y_QIv_8mYNny2WchvmjC4H-F2FJ7Tg';
+      let doc_id = "3060700737386576";
+
+      let  variables = {
+          count: 10,
+          cursor: text,
+          groupID: "320573804816194",
+          scale: 1,
+          server_timestamps: "true",
+          id: "320573804816194",
+        };
+
+      await fetch("https://www.facebook.com/api/graphql/", {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: `fb_dtsg=${encodeURIComponent(
+          fb_dtsg
+        )}&variables=${encodeURIComponent(
+          JSON.stringify(variables)
+        )}&doc_id=${encodeURIComponent(doc_id)}`,
+        method: "post",
+      })
+        // eslint-disable-next-line no-loop-func
+        .then(res1 => res1.json())
+        // eslint-disable-next-line no-loop-func
+        .then(res2 => {
+          //response = res.data.node;
+          let response = res2.data.node;
+         // followers = followers.concat(
+          //  res2.data.node.new_members.edges.map(
+            //  ({ node }: { node: { name: string } }) => {
+               // return node.name;
+              //},
+            //),
+         // );
+          //  after = res.datanew_members.page_info.has_next_page;
+          return response;
+        });
+      console.log(response);
+     // console.log({ followers: followers[4], success: true });
     } catch (err) {
       console.log('Invalid username');
     }
@@ -156,4 +189,4 @@ class CreateInstagramUser {
   }
 }
 
-export default CreateInstagramUser;
+export default CreateFacebookUser;
