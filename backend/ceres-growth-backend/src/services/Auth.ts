@@ -17,8 +17,20 @@ export default async (
     method: 'POST',
     body: formData,
     headers: {
-      'X-CSRFToken': 'csrftoken',
+      //'X-CSRFToken': 'csrftoken',
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'cookie': 'fr=fr'
+
     },
+
   }).then(res => res.headers.get('set-cookie')); // res.headers.get('set-cookie')
   return login;
 };
+/*fetch("https://www.facebook.com/login/", {
+  body: "email=jerderceres%40outlook.com&pass=senha123%21%40",
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded"
+  },
+  method: "POST"
+})
+*/

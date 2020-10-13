@@ -22,7 +22,7 @@ webScraping.post('/users/instagram', async (request, response) => {
   try {
     const facebookContent = new GetFacebookContent();
     const content = await facebookContent.execute({
-      username: request.query.username?.toString(),
+      name: request.query.name?.toString(),
       id: request.query.id?.toString(),
     });
     return response.status(200).json(content);

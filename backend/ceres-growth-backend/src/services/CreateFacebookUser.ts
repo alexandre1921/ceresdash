@@ -14,13 +14,13 @@ import CreateSessionFaceBook from './CreateSessionFaceBook';
 import { response } from 'express';
 
 interface Request {
-  username: string | undefined;
+  name: string | undefined;
   id: string | undefined;
 
 }
 
 class CreateFacebookUser {
-  public async execute({ username, id }: Request): Promise<boolean> {
+  public async execute({}: Request): Promise<boolean> {
     // const instagramUserRepository = getCustomRepository(
     //   InstagramUserRepository,
     // );
@@ -155,6 +155,7 @@ class CreateFacebookUser {
       await fetch("https://www.facebook.com/api/graphql/", {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
+          "cookie": typeof sessionId === 'string' ? sessionId : ''
         },
         body: `fb_dtsg=${encodeURIComponent(
           fb_dtsg
