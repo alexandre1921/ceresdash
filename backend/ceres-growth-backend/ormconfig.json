@@ -5,6 +5,7 @@
   "username": "user",
   "password": "password",
   "database": "ceres_growth",
+  "entities": ["./src/models/*.ts"],
   "migrations": ["./src/database/migrations/*.ts"],
   "cli": {
     "migrationsDir": "./src/database/migrations"

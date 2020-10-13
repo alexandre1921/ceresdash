@@ -1,4 +1,5 @@
 import { Router } from 'express';
+
 import webScraping from './webScraping.routes';
 
 const routes = Router();
