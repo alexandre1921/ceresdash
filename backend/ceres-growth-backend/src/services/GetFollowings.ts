@@ -63,7 +63,7 @@ export default async (id: string): Promise<Array<User>> => {
           );
         });
     }
-    console.log(`Criando lista de seguidores, tem próximo?: ${has_next}`);
+    console.log(`Criando lista de seguindo, tem próximo?: ${has_next}`);
   } catch (err) {
     console.log('Invalid username');
   }
