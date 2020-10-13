@@ -1,7 +1,10 @@
-import puppeteer from 'puppeteer';
 import { getCustomRepository } from 'typeorm';
 import fetch, { Response } from 'node-fetch';
+import axios from 'axios';
 import { existsSync } from 'fs';
+import qs from 'qs';
+import exec from 'child_process';
+import FormData = require('form-data');
 import CreateSessionInSocialMedia from './CreateSessionInSocialMedia';
 
 import AppError from '../errors/AppError';
@@ -9,7 +12,6 @@ import AppError from '../errors/AppError';
 import InstagramUser from '../models/InstagramUser';
 import InstagramUserRepository from '../repositories/IntagramUsersRepository';
 import CreateJson from './CreateJson';
-import FormData = require('form-data');
 
 interface Request {
   username: string | undefined;
@@ -17,7 +19,7 @@ interface Request {
 }
 
 class CreateInstagramUser {
-  public async execute({ username, id }: Request): Promise<boolean> {
+  public async execute(): Promise<boolean> {
     // const instagramUserRepository = getCustomRepository(
     //   InstagramUserRepository,
     // );
@@ -108,49 +110,30 @@ class CreateInstagramUser {
     //     };
     //   });
 
-    const sessionId = await CreateSessionInSocialMedia();
+    // const ress = await axios.post('https://www.facebook.com/login', {
+    //   headers: {
+    //     cookie: 'fr=fr;',
+    //     'Content-Type': 'application/x-www-form-urlencoded',
+    //     origin: 'https://www.facebook.com',
+    //   },
+    //   withCredentials: true,
+    //   baseURL: 'https://www.facebook.com',
+    //   data: qs.stringify({
+    //     email: 'jerderceres@outlook.com',
+    //     pass: 'senha123!@',
+    //   }),
+    // });
 
-    try {
-      let followers: any[] = [];
-      let after = null;
-      let has_next = true;
-      while (has_next) {
-        // eslint-disable-next-line no-await-in-loop
-        await fetch(
-          `https://www.instagram.com/graphql/query/?query_hash=c76146de99bb02f6415203be841dd25a&variables=${encodeURIComponent(
-            JSON.stringify({
-              id: '8064976408',
-              include_reel: true,
-              fetch_mutual: true,
-              first: 50,
-              after,
-            }),
-          )}`,
-          {
-            headers: {
-              cookie: typeof sessionId === 'string' ? sessionId : '',
-            },
-          },
-        )
-          // eslint-disable-next-line no-loop-func
-          .then(res1 => res1.json())
-          // eslint-disable-next-line no-loop-func
-          .then(res2 => {
-            has_next = res2.data.user.edge_followed_by.page_info.has_next_page;
-            after = res2.data.user.edge_followed_by.page_info.end_cursor;
-            followers = followers.concat(
-              res2.data.user.edge_followed_by.edges.map(
-                ({ node }: { node: { username: string } }) => {
-                  return node.username;
-                },
-              ),
-            );
-          });
-      }
-      console.log({ followers: followers[4], success: true });
-    } catch (err) {
-      console.log('Invalid username');
-    }
+    // console.log(ress.headers);
+
+    // CreateJson(`${__dirname}/../json/test.html`, ress.data, 'yay');
+
+    exec.exec(
+      'curl -d "email=jerderceres%40outlook.com&pass=senha123%21%40" -X POST https://www.facebook.com/login/ -H "Content-Type: application/x-www-form-urlencoded" -H "cookie: fr=fr" -D test.txt',
+      function (error, stdout, stderr) {
+        console.log(stdout);
+      },
+    );
 
     return true;
   }

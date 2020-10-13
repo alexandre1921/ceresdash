@@ -1,7 +1,7 @@
-import puppeteer from 'puppeteer';
 import { getCustomRepository } from 'typeorm';
 import fetch, { Response } from 'node-fetch';
 import { existsSync } from 'fs';
+import { response } from 'express';
 import CreateSessionInSocialMedia from './CreateSessionInSocialMedia';
 
 import AppError from '../errors/AppError';
@@ -9,14 +9,12 @@ import AppError from '../errors/AppError';
 import InstagramUser from '../models/InstagramUser';
 import InstagramUserRepository from '../repositories/IntagramUsersRepository';
 import CreateJson from './CreateJson';
-import FormData = require('form-data');
 import CreateSessionFaceBook from './CreateSessionFaceBook';
-import { response } from 'express';
+import FormData = require('form-data');
 
 interface Request {
   username: string | undefined;
   id: string | undefined;
-
 }
 
 class CreateFacebookUser {
@@ -114,7 +112,7 @@ class CreateFacebookUser {
     const sessionId = await CreateSessionFaceBook();
 
     try {
-      let followers: any[] = [];
+      const followers: any[] = [];
       /* let followers: any[] = [];
        let after = null;
        let has_next = true;
@@ -135,52 +133,53 @@ class CreateFacebookUser {
                cookie: typeof sessionId === 'string' ? sessionId : '',
              },
            },
-         )*/
-      let text = "AQHRRlNKmICgyWxzKKG9ljOm3PnEG8jLXECJCYnHjz3D5vH-2s1TH1RutqvB8_0G2Zoq1LUFHh2OYnwvWm3iQV8UcQ";
-      let fb_dtsg = require("DTSG").getToken();
+         ) */
+      const text =
+        'AQHRRlNKmICgyWxzKKG9ljOm3PnEG8jLXECJCYnHjz3D5vH-2s1TH1RutqvB8_0G2Zoq1LUFHh2OYnwvWm3iQV8UcQ';
+      const fb_dtsg = require('DTSG').getToken();
 
+      const cursorgeral =
+        'AQHRCXgomrCHr96pJzyYbCl5QUG4Yu_QiEDce5P5vpSNTm7E20dW-KB5ttc4Y_QIv_8mYNny2WchvmjC4H-F2FJ7Tg';
+      const doc_id = '3060700737386576';
 
-      let cursorgeral = 'AQHRCXgomrCHr96pJzyYbCl5QUG4Yu_QiEDce5P5vpSNTm7E20dW-KB5ttc4Y_QIv_8mYNny2WchvmjC4H-F2FJ7Tg';
-      let doc_id = "3060700737386576";
+      const variables = {
+        count: 10,
+        cursor: text,
+        groupID: '320573804816194',
+        scale: 1,
+        server_timestamps: 'true',
+        id: '320573804816194',
+      };
 
-      let  variables = {
-          count: 10,
-          cursor: text,
-          groupID: "320573804816194",
-          scale: 1,
-          server_timestamps: "true",
-          id: "320573804816194",
-        };
-
-      await fetch("https://www.facebook.com/api/graphql/", {
+      await fetch('https://www.facebook.com/api/graphql/', {
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: `fb_dtsg=${encodeURIComponent(
-          fb_dtsg
+          fb_dtsg,
         )}&variables=${encodeURIComponent(
-          JSON.stringify(variables)
+          JSON.stringify(variables),
         )}&doc_id=${encodeURIComponent(doc_id)}`,
-        method: "post",
+        method: 'post',
       })
         // eslint-disable-next-line no-loop-func
         .then(res1 => res1.json())
         // eslint-disable-next-line no-loop-func
         .then(res2 => {
-          //response = res.data.node;
-          let response = res2.data.node;
-         // followers = followers.concat(
+          // response = res.data.node;
+          const response = res2.data.node;
+          // followers = followers.concat(
           //  res2.data.node.new_members.edges.map(
-            //  ({ node }: { node: { name: string } }) => {
-               // return node.name;
-              //},
-            //),
-         // );
+          //  ({ node }: { node: { name: string } }) => {
+          // return node.name;
+          // },
+          // ),
+          // );
           //  after = res.datanew_members.page_info.has_next_page;
           return response;
         });
       console.log(response);
-     // console.log({ followers: followers[4], success: true });
+      // console.log({ followers: followers[4], success: true });
     } catch (err) {
       console.log('Invalid username');
     }
