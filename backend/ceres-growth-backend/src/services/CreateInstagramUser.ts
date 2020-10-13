@@ -3,6 +3,7 @@ import { getCustomRepository } from 'typeorm';
 import InstagramUser from '../models/InstagramUser';
 import InstagramUserRepository from '../repositories/IntagramUsersRepository';
 import GetFollowers from './GetFollowers';
+import GetFollowings from './GetFollowings';
 import GetUserContent from './GetUserContent';
 
 interface Request {
@@ -10,7 +11,7 @@ interface Request {
 }
 
 class CreateInstagramUser {
-  public async execute({ username }: Request): Promise<InstagramUser[]> {
+  public async execute({ username }: Request): Promise<null> {
     const instagramUserRepository = getCustomRepository(
       InstagramUserRepository,
     );
@@ -22,13 +23,22 @@ class CreateInstagramUser {
       is_private: false,
       is_verified: false,
     });
-    const followers = await GetFollowers(id || '');
+    const followers = await GetFollowers(`${id}`);
     const data = await Promise.all(
       followers.map(async user => {
         const UserContent = await GetUserContent(user);
         return UserContent;
       }),
     );
+
+    // const { id } = await GetUserContent({
+    //   id: '',
+    //   username,
+    //   full_name: '',
+    //   is_private: false,
+    //   is_verified: false,
+    // });
+    // const followings = await GetFollowings(`${id}`);
 
     console.log('Coleta de dados feita, inserindo no banco de dados');
 
@@ -52,7 +62,7 @@ class CreateInstagramUser {
 
     console.log('Inserção no bd feita');
 
-    return data;
+    return null;
   }
 }
 
