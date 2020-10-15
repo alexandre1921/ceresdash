@@ -9,7 +9,9 @@ webScraping.get('/users/instagram', async (request, response) => {
   try {
     const list = new ListInstagramUser();
     const instagramUsers = await list.execute({
+      username: `${request.query.username}`,
       take: Number(request.query.take) || 10,
+      filter: `${request.query.filter}`,
     });
     return response.status(200).json(instagramUsers);
   } catch (err) {
