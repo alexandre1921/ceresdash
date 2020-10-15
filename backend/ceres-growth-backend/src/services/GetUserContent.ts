@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 
 import InstagramUser from '../models/InstagramUser';
-import CreateSessionInSocialMedia from './GetSessionInSocialMedia';
+import CreateSessionInSocialMedia from './Instagram/GetSessionInSocialMedia';
 import AppError from '../errors/AppError';
 
 interface User {

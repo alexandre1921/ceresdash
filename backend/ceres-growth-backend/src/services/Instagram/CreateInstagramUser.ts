@@ -1,10 +1,10 @@
 import { getCustomRepository } from 'typeorm';
 
-import InstagramUser from '../models/InstagramUser';
-import InstagramUserRepository from '../repositories/IntagramUsersRepository';
+import InstagramUser from '../../models/InstagramUser';
+import InstagramUserRepository from '../../repositories/IntagramUsersRepository';
 import GetFollowers from './GetFollowers';
 import GetFollowings from './GetFollowings';
-import GetUserContent from './GetUserContent';
+import GetUserContent from './../GetUserContent';
 
 interface Request {
   username: string;
