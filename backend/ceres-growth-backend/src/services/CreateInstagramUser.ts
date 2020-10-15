@@ -11,7 +11,7 @@ interface Request {
 }
 
 class CreateInstagramUser {
-  public async execute({ username }: Request): Promise<null> {
+  public async execute({ username }: Request): Promise<InstagramUser[]> {
     const instagramUserRepository = getCustomRepository(
       InstagramUserRepository,
     );
@@ -62,7 +62,7 @@ class CreateInstagramUser {
 
     console.log('Inserção no bd feita');
 
-    return null;
+    return data;
   }
 }
 
