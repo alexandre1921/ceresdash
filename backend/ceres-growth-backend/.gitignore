@@ -1,5 +1,2 @@
-node_modules/
-json/*
-!json/.gitkeep
 .env
-yarn-error.log
+/src/json/
