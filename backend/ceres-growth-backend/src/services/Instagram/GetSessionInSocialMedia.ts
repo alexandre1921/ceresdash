@@ -7,7 +7,7 @@ import CreateJson from './CreateJson';
 
 export default async (): Promise<string | null> => {
   let sessionId = '';
-  const sessionIdFilePath = `${__dirname}/../json/sessionId.json`;
+  const sessionIdFilePath = `${__dirname}/../../json/sessionId.json`;
   if (!existsSync(sessionIdFilePath)) {
     const login = await Auth(`https://www.instagram.com/accounts/login/ajax/`, [
       { name: 'username', value: `${process.env.INSTAGRAM_USERNAME}` },
