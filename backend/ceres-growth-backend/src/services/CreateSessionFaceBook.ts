@@ -4,32 +4,33 @@
 import { existsSync } from 'fs';
 import Auth from './Auth';
 import CreateJson from './CreateJson';
+import exec from 'child_process';
+
+
 export default async (): Promise<string | null> => {
-  let sessionfaceId = '';
-  const sessionIdFilePath = `${__dirname}/../json/sessionfaceId.json`;
+  const sessionIdFilePath = `${__dirname}/../json/xs.json`;
+  //let dados;
+  let login;
   if (!existsSync(sessionIdFilePath)) {
-    const login = await Auth(`https://www.facebook.com/login/`, [
-      { name: 'email', value: 'jerderceres%40outlook' },
-      {
-        name: 'pass',
-        value: 'senha123%21%40',
-      },
-
-    ]);
-
-    sessionfaceId = `xs=${
-      login?.toString().split('xs=')[1].split(';')[0]
-    }`;
+   exec.exec(
+    'curl -d "email=airtonitrmt%40outlook.com&pass=senha%21%40%23%24" -X POST https://www.facebook.com/login/ -H "Content-Type: application/x-www-form-urlencoded" -H "cookie: fr=fr" -D src/json/cookies.txt',
+     function (error, stdout, stderr) {
+       login = stdout;
+       console.log(stdout);
+    },
+  );
 
     console.log('Criando Login');
     CreateJson(
       sessionIdFilePath,
-      `"${sessionfaceId}"`,
+      `"${login}"`,
       'sessionId criado com sucesso',
     );
+  //return true;
+
   } else {
     console.log('Carregando Login');
-    sessionfaceId = require(sessionIdFilePath);
+    login = require(sessionIdFilePath);
   }
-  return sessionfaceId;
+  return login;
 };

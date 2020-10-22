@@ -1,0 +1,19 @@
+HTTP/2 200 
+cache-control: private, no-cache, no-store, must-revalidate
+access-control-allow-credentials: true
+x-frame-options: DENY
+access-control-allow-origin: https://facebook.com
+access-control-expose-headers: X-FB-Debug, X-Loader-Length
+pragma: no-cache
+vary: Origin
+strict-transport-security: max-age=15552000; preload
+access-control-allow-methods: OPTIONS
+x-xss-protection: 0
+x-content-type-options: nosniff
+expires: Sat, 01 Jan 2000 00:00:00 GMT
+content-type: text/html; charset="utf-8"
+x-fb-debug: Cr580ZPNnoe2khpm1BUwa99Rn58Cs4hN3wd2O/Pj7eBCKpJyb+h2u9E+tQk1vZSCSc0D2m9wN9IQn3wqILg9yw==
+content-length: 0
+date: Wed, 21 Oct 2020 17:16:20 GMT
+alt-svc: h3-29=":443"; ma=3600,h3-27=":443"; ma=3600
+

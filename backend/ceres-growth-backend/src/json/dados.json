@@ -1,0 +1,20 @@
+HTTP/2 200 
+set-cookie: spin=r.1002822439_b.trunk_t.1602714393_s.1_v.2_; expires=Thu, 15-Oct-2020 23:26:33 GMT; Max-Age=90000; path=/; domain=.facebook.com; secure; httponly
+cache-control: private, no-cache, no-store, must-revalidate
+access-control-allow-credentials: true
+x-frame-options: DENY
+access-control-allow-origin: https://facebook.com
+access-control-expose-headers: X-FB-Debug, X-Loader-Length
+pragma: no-cache
+vary: Origin
+vary: Accept-Encoding
+strict-transport-security: max-age=15552000; preload
+access-control-allow-methods: OPTIONS
+x-xss-protection: 0
+content-type: text/javascript; charset=utf-8
+x-content-type-options: nosniff
+expires: Sat, 01 Jan 2000 00:00:00 GMT
+x-fb-debug: HDnyiImd1zhTX7MNNkOiihbaAXH/KZ4FKMUQdxNakUEPa0lRqzySjcJr46JvrcUOB0K9YiR2TZVyloJIjrkX4g==
+date: Wed, 14 Oct 2020 22:26:33 GMT
+alt-svc: h3-29=":443"; ma=3600,h3-27=":443"; ma=3600
+
