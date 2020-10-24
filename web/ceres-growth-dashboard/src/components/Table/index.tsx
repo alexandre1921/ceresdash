@@ -23,6 +23,13 @@ interface TableInfo {
   tfoot: JSX.Element[];
 }
 
+const result = api.get('/webScraping/users/instagram', {
+  params: {
+    username: '',
+    take: 10,
+  },
+});
+
 const Table: React.FC = () => {
   const marker = (
     callback: React.Dispatch<
@@ -88,55 +95,34 @@ const Table: React.FC = () => {
     ],
   });
 
-  // useEffect(() => {
-  //   if (!tableInfo) {
-  //     const currentAccountState = async (): Promise<AccountState> => {
-  //       return await axios.get<AccountState>(`/api/account`).then(response => {
-  //         return response.data;
-  //       });
-  //     };
-  //     currentAccountState().then(response => {
-  //       console.log('as : ', response);
-  //       // probably add better handling here in the case that there is no result in the find, otherwise you mightrun into the same issue if admin is undefined again
-  //       setAdmin(
-  //         response.authorities.find(
-  //           authority => authority === AUTHORITIES.ADMIN,
-  //         ) !== undefined,
-  //       );
-  //     });
-  //   }
-  // }, [tableInfo]);
-  api
-    .get('/webScraping/users/instagram', {
-      params: {
-        username: 'alex',
-        take: 10,
+  const [first, setFirst] = useState(true);
+  result.then(res => {
+    const newTable = { ...tableInfo };
+    newTable.tbody = [];
+    res.data.forEach(
+      // eslint-disable-next-line camelcase
+      (value: { full_name: string; username: string; id: string }) => {
+        newTable.tbody.push([
+          <button
+            type="button"
+            onClick={() => {
+              marker(setTableInfo, tableInfo, 'tbody', 0, false);
+            }}
+          >
+            <Checkbox />
+          </button>,
+          value.full_name,
+          `@${value.username}`,
+          value.id,
+          'more info',
+        ]);
       },
-    })
-    .then(res => {
-      const newTable = { ...tableInfo };
-      newTable.tbody = [];
-      res.data.forEach(
-        // eslint-disable-next-line camelcase
-        (value: { full_name: string; username: string; id: string }) => {
-          newTable.tbody.push([
-            <button
-              type="button"
-              onClick={() => {
-                marker(setTableInfo, tableInfo, 'tbody', 0, false);
-              }}
-            >
-              <Checkbox />
-            </button>,
-            value.full_name,
-            `@${value.username}`,
-            value.id,
-            'more info',
-          ]);
-        },
-      );
+    );
+    if (first === true) {
+      setFirst(false);
       setTableInfo(newTable);
-    });
+    }
+  });
 
   const [[isOpen, modal], setModal] = useState([false, '']);
 

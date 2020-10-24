@@ -24,7 +24,7 @@ webScraping.post('/users/instagram', async (request, response) => {
   try {
     const instagramContent = new GetInstagramContent();
     const content = await instagramContent.execute({
-      username: `${request.body.username?.toString()}`,
+      username: `${request.query.username?.toString()}`,
     });
     return response.status(200).json(content);
   } catch (err) {
