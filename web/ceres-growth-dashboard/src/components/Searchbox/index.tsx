@@ -9,10 +9,10 @@ const SearchBox: React.FC = () => {
       <Box>
         <Input
           placeholder="Buscar"
-          onChange={async () => {
+          onChange={async (e: React.ChangeEvent<HTMLInputElement>) => {
             const res = await api.get('/webScraping/users/instagram', {
               params: {
-                username: 'alex',
+                username: e.target.value,
               },
             });
             console.log(res.data);
