@@ -1,6 +1,6 @@
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export class CreateFacebookUsers1602866624062 implements MigrationInterface {
+export default class CreateFacebookUsers1602866624062 implements MigrationInterface {
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
@@ -19,12 +19,12 @@ export class CreateFacebookUsers1602866624062 implements MigrationInterface {
             name: 'username',
             type: 'varchar',
             isNullable: false,
-            length: '50',
+            length: '100',
           },
           {
             name: 'url',
             type: 'varchar',
-            length: '50',
+            length: '100',
             isNullable: true,
           },
         ],

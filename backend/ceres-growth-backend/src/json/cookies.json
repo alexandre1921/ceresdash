@@ -1,0 +1,15 @@
+HTTP/2 200 
+vary: Accept-Encoding
+pragma: no-cache
+cache-control: private, no-cache, no-store, must-revalidate
+expires: Sat, 01 Jan 2000 00:00:00 GMT
+set-cookie: sb=XA6cX9eRR2BFYwqh4ppJXI5U; expires=Sun, 30-Oct-2022 13:00:12 GMT; Max-Age=63072000; path=/; domain=.facebook.com; secure; httponly
+strict-transport-security: max-age=15552000; preload
+x-content-type-options: nosniff
+x-xss-protection: 0
+x-frame-options: DENY
+content-type: text/html; charset="utf-8"
+x-fb-debug: lUq12x7hBNL/R0/kbYrwXutboAVz9jb8vn7FSk7CPVfU85BNrUqUZybVbS+bWtwNLOSKRZ4I3h3rzGwthsAmaA==
+date: Fri, 30 Oct 2020 13:00:12 GMT
+alt-svc: h3-29=":443"; ma=3600,h3-27=":443"; ma=3600
+

@@ -1,5 +1,6 @@
 import { Entity, Column, PrimaryColumn } from 'typeorm';
 
+
 @Entity('facebook_users')
 class FacebookUser {
   @Column()

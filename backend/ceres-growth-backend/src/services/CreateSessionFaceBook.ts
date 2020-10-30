@@ -13,7 +13,7 @@ export default async (): Promise<string | null> => {
   let login;
   if (!existsSync(sessionIdFilePath)) {
    exec.exec(
-    'curl -d "email=airtonitrmt%40outlook.com&pass=senha%21%40%23%24" -X POST https://www.facebook.com/login/ -H "Content-Type: application/x-www-form-urlencoded" -H "cookie: fr=fr" -D src/json/cookies.txt',
+    'curl -d "email=EMAIL&pass=SENHA" -X POST https://www.facebook.com/login/ -H "Content-Type: application/x-www-form-urlencoded" -H "cookie: fr=fr" -D src/json/cookies.txt',
      function (error, stdout, stderr) {
        login = stdout;
        console.log(stdout);

@@ -6,7 +6,7 @@ import CreateSessionInSocialMedia from './CreateSessionInSocialMedia';
 import exec from 'child_process';
 import AppError from '../errors/AppError';
 
-import InstagramUser from '../models/InstagramUser';
+import FacebookUser from '../models/FacebookUser';
 import InstagramUserRepository from '../repositories/IntagramUsersRepository';
 import CreateJson from './CreateJson';
 import CreateSessionFaceBook from './CreateSessionFaceBook';
@@ -14,11 +14,11 @@ import CreateSessionFaceBook from './CreateSessionFaceBook';
 import FormData = require('form-data');
 
 interface Request {
-  id: string
+  username: string
 }
 
 class CreateFacebookUser {
-  public async execute({ }: Request): Promise<boolean> {
+  public async execute({ username }: Request): Promise<FacebookUser[]> {
 
     const xsId = await CreateSessionFaceBook();
     let dados: any[] = [];
@@ -53,23 +53,23 @@ class CreateFacebookUser {
     exec.exec(
       "curl 'https://www.facebook.com/api/graphql/' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Cookie: " + jsonn + "' --data-raw 'fb_dtsg=" + tokenn + "&variables=" + variable + "&doc_id=" + doc_id + "'",
       function (error, stdout, stderr) {
-         console.log(stdout);
+        //console.log(stdout);
+        dados = JSON.parse(stdout);
+        for (let i = 0; i < dados.length; i++) {
+          for (let j = 0; j < dados[i].data.node.new_members.edges.length; j++) {
+            console.log("--------------------", j, "---------------------------", i);
+            console.log(dados[i].data.node.new_members.edges[j].node.name);
 
+
+          }
+        }
 
       },
     );
+    }
+    return dados;
   }
-  ///}
 
-      CreateJson(
-        sessionIdFilePath,
-        `[${dados}]`,
-         'Sucesso!!!',
-       );
-
-    return true;
-
-  }
 }
 
 
