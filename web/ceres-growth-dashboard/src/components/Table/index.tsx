@@ -23,53 +23,54 @@ interface TableInfo {
   tfoot: JSX.Element[];
 }
 
-const result = api.get('/webScraping/users/instagram', {
-  params: {
-    username: '',
-    take: 10,
-  },
-});
+const result = (username: string) =>
+  api.get('/webScraping/users/instagram', {
+    params: {
+      username,
+      take: 10,
+    },
+  });
 
-const Table: React.FC = () => {
-  const marker = (
-    callback: React.Dispatch<
-      React.SetStateAction<{
-        thead: (string | JSX.Element)[];
-        tbody: (string | JSX.Element)[][];
-        tfoot: JSX.Element[];
-      }>
-    >,
-    tableInfo: TableInfo,
-    tableLocal: string,
-    line: number,
-    marked: boolean,
-  ) => {
-    const newTable = { ...tableInfo };
-    console.log(newTable.tbody[line][0]);
-    if (tableLocal === 'thead')
-      newTable.thead[0] = (
-        <button
-          type="button"
-          onClick={() => {
-            marker(callback, tableInfo, 'thead', 0, !marked);
-          }}
-        >
-          {marked ? <Checkbox /> : <MarkedCheckbox />}
-        </button>
-      );
-    if (tableLocal === 'tbody')
-      newTable.tbody[line][0] = (
-        <button
-          type="button"
-          onClick={() => {
-            marker(callback, tableInfo, 'tbody', 0, !marked);
-          }}
-        >
-          {marked ? <Checkbox /> : <MarkedCheckbox />}
-        </button>
-      );
-    callback(newTable);
-  };
+const marker = (
+  callbacke: React.Dispatch<
+    React.SetStateAction<{
+      thead: (string | JSX.Element)[];
+      tbody: (string | JSX.Element)[][];
+      tfoot: JSX.Element[];
+    }>
+  >,
+  tableInfo: TableInfo,
+  tableLocal: string,
+  line: number,
+  marked: boolean,
+) => {
+  const newTable = { ...tableInfo };
+  console.log(newTable.tbody[line][0]);
+  if (tableLocal === 'thead')
+    newTable.thead[0] = (
+      <button
+        type="button"
+        onClick={() => {
+          marker(callbacke, tableInfo, 'thead', 0, !marked);
+        }}
+      >
+        {marked ? <Checkbox /> : <MarkedCheckbox />}
+      </button>
+    );
+  if (tableLocal === 'tbody')
+    newTable.tbody[line][0] = (
+      <button
+        type="button"
+        onClick={() => {
+          marker(callbacke, tableInfo, 'tbody', 0, !marked);
+        }}
+      >
+        {marked ? <Checkbox /> : <MarkedCheckbox />}
+      </button>
+    );
+  callbacke(newTable);
+};
+const Table: React.FC = ({ children }) => {
   const [tableInfo, setTableInfo] = useState({
     thead: [
       <button
@@ -95,37 +96,35 @@ const Table: React.FC = () => {
     ],
   });
 
-  const [first, setFirst] = useState(true);
-  result.then(res => {
-    const newTable = { ...tableInfo };
-    newTable.tbody = [];
-    res.data.forEach(
-      // eslint-disable-next-line camelcase
-      (value: { full_name: string; username: string; id: string }) => {
-        newTable.tbody.push([
-          <button
-            type="button"
-            onClick={() => {
-              marker(setTableInfo, tableInfo, 'tbody', 0, false);
-            }}
-          >
-            <Checkbox />
-          </button>,
-          value.full_name,
-          `@${value.username}`,
-          value.id,
-          'more info',
-        ]);
-      },
-    );
-    if (first === true) {
-      setFirst(false);
-      setTableInfo(newTable);
-    }
-  });
-
   const [[isOpen, modal], setModal] = useState([false, '']);
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const teste = () => {
+    result(`${children}`)
+      .then(res => {
+        const newTable = { ...tableInfo };
+        newTable.tbody = [];
+        res.data.forEach(
+          // eslint-disable-next-line camelcase
+          (value: { full_name: string; username: string; id: string }) => {
+            newTable.tbody.push([
+              <button type="button">
+                <Checkbox />
+              </button>,
+              value.full_name,
+              `@${value.username}`,
+              value.id,
+              'more info',
+            ]);
+          },
+        );
+        setTableInfo(newTable);
+        return newTable;
+      })
+      .then(res => console.log(res));
+  };
+  useEffect(() => {
+    teste();
+  }, [children, teste]);
   return (
     <>
       <Modal open={isOpen}>
