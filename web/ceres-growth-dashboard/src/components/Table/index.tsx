@@ -15,7 +15,6 @@ import { ReactComponent as MarkedCheckbox } from '../../images/markedCheckbox.sv
 import Modal from '../Modal';
 import ModalList from '../ModalList';
 import ModalSendMessage from '../ModalSendMessage';
-import api from '../../services/api';
 
 interface TableInfo {
   thead: (string | JSX.Element)[];
@@ -63,30 +62,12 @@ const marker = (
   callbacke(newTable);
 };
 
-const TableBody=(tableContent:[{full_name:string,username:string,id:string}])=>{
-  const tbody = [];
-  let value;
-  for (let i = 0; i < tableContent.length; i++) {
-      value=tableContent[i];
-    tbody.push([
-      <button type="button">
-        <Checkbox />
-      </button>,
-      value.full_name,
-      `@${value.username}`,
-      value.id,
-      'more info',
-    ]);
-  }
-  console.log(tbody);
-  return tbody;
-};
-
 interface Props {
   tableContent:any;
 }
 
-const Table: React.FC<Props> = (props:Props) => {
+const Table: React.FC<Props> = ({ tableContent }:Props) => {
+
   const [tableInfo, setTableInfo] = useState({
     thead: [
       <button
@@ -112,10 +93,31 @@ const Table: React.FC<Props> = (props:Props) => {
     ],
   });
 
+  tableInfo.tbody = [];
+  let value;
+  for (let i = 0; i < tableContent.length; i++) {
+      value=tableContent[i];
+      tableInfo.tbody.push([
+      <button 
+        type="button"
+        onClick={() => {
+          marker(setTableInfo, tableInfo, 'tbody',0,false)
+        }}
+      >
+        <Checkbox />
+      </button>,
+      value.full_name,
+      `@${value.username}`,
+      value.id,
+      'more info',
+    ]);
+  }
+  const showTable=tableInfo.tbody.length===0;
+
   const [[isOpen, modal], setModal] = useState([false, '']);
 
   return (
-    <>
+    <div style={{display:showTable?"none":""}}>
       <Modal open={isOpen}>
         {(() => {
           switch (modal) {
@@ -149,7 +151,7 @@ const Table: React.FC<Props> = (props:Props) => {
           </tr>
         </Thead>
         <Tbody>
-          {TableBody(props.tableContent).map((tbodyRow, trIndex) => (
+          {tableInfo.tbody.map((tbodyRow, trIndex) => (
             <tr>
               {tbodyRow.map((value, index) => (
                 <td>
@@ -197,7 +199,7 @@ const Table: React.FC<Props> = (props:Props) => {
           </tr>
         </Tfoot>
       </TableComponent>
-    </>
+    </div>
   );
 };
 export default Table;
