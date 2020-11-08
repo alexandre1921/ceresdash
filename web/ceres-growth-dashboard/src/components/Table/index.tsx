@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   TableComponent,
   Thead,
@@ -22,14 +22,6 @@ interface TableInfo {
   tbody: (string | JSX.Element)[][];
   tfoot: JSX.Element[];
 }
-
-const result = (username: string) =>
-  api.get('/webScraping/users/instagram', {
-    params: {
-      username,
-      take: 10,
-    },
-  });
 
 const marker = (
   callbacke: React.Dispatch<
@@ -70,7 +62,31 @@ const marker = (
     );
   callbacke(newTable);
 };
-const Table: React.FC = ({ children }) => {
+
+const TableBody=(tableContent:[{full_name:string,username:string,id:string}])=>{
+  const tbody = [];
+  let value;
+  for (let i = 0; i < tableContent.length; i++) {
+      value=tableContent[i];
+    tbody.push([
+      <button type="button">
+        <Checkbox />
+      </button>,
+      value.full_name,
+      `@${value.username}`,
+      value.id,
+      'more info',
+    ]);
+  }
+  console.log(tbody);
+  return tbody;
+};
+
+interface Props {
+  tableContent:any;
+}
+
+const Table: React.FC<Props> = (props:Props) => {
   const [tableInfo, setTableInfo] = useState({
     thead: [
       <button
@@ -97,34 +113,7 @@ const Table: React.FC = ({ children }) => {
   });
 
   const [[isOpen, modal], setModal] = useState([false, '']);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const teste = () => {
-    result(`${children}`)
-      .then(res => {
-        const newTable = { ...tableInfo };
-        newTable.tbody = [];
-        res.data.forEach(
-          // eslint-disable-next-line camelcase
-          (value: { full_name: string; username: string; id: string }) => {
-            newTable.tbody.push([
-              <button type="button">
-                <Checkbox />
-              </button>,
-              value.full_name,
-              `@${value.username}`,
-              value.id,
-              'more info',
-            ]);
-          },
-        );
-        setTableInfo(newTable);
-        return newTable;
-      })
-      .then(res => console.log(res));
-  };
-  useEffect(() => {
-    teste();
-  }, [children, teste]);
+
   return (
     <>
       <Modal open={isOpen}>
@@ -160,7 +149,7 @@ const Table: React.FC = ({ children }) => {
           </tr>
         </Thead>
         <Tbody>
-          {tableInfo.tbody.map((tbodyRow, trIndex) => (
+          {TableBody(props.tableContent).map((tbodyRow, trIndex) => (
             <tr>
               {tbodyRow.map((value, index) => (
                 <td>

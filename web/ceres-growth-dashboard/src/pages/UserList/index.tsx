@@ -53,15 +53,15 @@ const UserList: React.FC = () => {
                         onChange={async (
                           e: React.ChangeEvent<HTMLInputElement>,
                         ) => {
-                          // const res = await api.get(
-                          //   '/webScraping/users/instagram',
-                          //   {
-                          //     params: {
-                          //       username: e.target.value,
-                          //     },
-                          //   },
-                          // );
-                          setTableContent(e.target.value);
+                          const res = await api.get(
+                            '/webScraping/users/instagram',
+                            {
+                              params: {
+                                username: e.target.value,
+                              },
+                            },
+                          );
+                          setTableContent(res.data);
                         }}
                       />
                       <Magnifier />
@@ -79,7 +79,7 @@ const UserList: React.FC = () => {
           </Row>
           <Row>
             <ColMd12>
-              <Table>{tableContent}</Table>
+              <Table tableContent={tableContent}>{tableContent}</Table>
             </ColMd12>
           </Row>
         </Grid>
