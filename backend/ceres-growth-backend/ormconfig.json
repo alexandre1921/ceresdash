@@ -4,7 +4,7 @@
   "port": 54320,
   "username": "user",
   "password": "password",
-  "database": "ceres_growth",
+  "database": "ceress_growth",
   "entities": ["./src/models/*.ts"],
   "migrations": ["./src/database/migrations/*.ts"],
   "cli": {

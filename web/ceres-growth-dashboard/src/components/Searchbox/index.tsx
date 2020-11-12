@@ -16,6 +16,11 @@ const SearchBox: React.FC = () => {
               },
             });
             console.log(res.data);
+            const resface = await api.get('/weScraping/users/facebook', {
+              params: {
+                username: e.target.value,
+              },
+            });
           }}
         />
         <Magnifier />

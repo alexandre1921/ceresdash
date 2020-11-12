@@ -24,7 +24,7 @@ interface TableInfo {
 }
 
 const result = (username: string) =>
-  api.get('/webScraping/users/instagram', {
+  api.get('/webScraping/users/facebook', {
     params: {
       username,
       take: 10,
@@ -105,13 +105,13 @@ const Table: React.FC = ({ children }) => {
         newTable.tbody = [];
         res.data.forEach(
           // eslint-disable-next-line camelcase
-          (value: { full_name: string; username: string; id: string }) => {
+          (value: { url: string; username: string; id: string }) => {
             newTable.tbody.push([
               <button type="button">
                 <Checkbox />
               </button>,
-              value.full_name,
-              `@${value.username}`,
+              value.username,
+              `@${value.url}`,
               value.id,
               'more info',
             ]);
