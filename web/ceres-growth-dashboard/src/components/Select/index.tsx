@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   SelectTitle,
   SelectButton,
@@ -9,16 +9,22 @@ import {
 import { ReactComponent as Arrow } from '../../images/arrow.svg';
 
 interface Props {
+  onSelect: (value: string) => void;
   selectInfo: {
     title: JSX.Element;
     options: Array<string>;
   };
 }
 
-const Select: React.FC<Props> = (Props: Props) => {
-  const { title, options } = Props.selectInfo;
+const Select: React.FC<Props> = ({selectInfo, onSelect}: Props) => {
+  const { title, options } = selectInfo;
+  const [display, setDisplay] = useState("none");
   return (
-    <SelectDiv>
+    <SelectDiv onFocus={()=>{setDisplay("")}} onBlur={async ()=>{
+          await new Promise(r => setTimeout(r, 100));
+          setDisplay("none");
+        }
+      }>
       <SelectButton href="#">
         <>
           <SelectTitle>
@@ -28,7 +34,11 @@ const Select: React.FC<Props> = (Props: Props) => {
         </>
         <SelectList>
           {options.map((option: string) => (
-            <SelectOption key={option} href="#">
+            <SelectOption style={{display: display}} key={option} href="#" onClick={()=>{
+                  setDisplay("none");
+                  onSelect(option);
+                }
+              }>
               {option}
             </SelectOption>
           ))}

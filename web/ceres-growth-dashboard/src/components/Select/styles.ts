@@ -73,11 +73,11 @@ export const SelectButton = styled.a`
     }
   }
 
-  &:not(:focus) {
-    & div {
-      display: none;
-    }
-  }
+  // &:not(:focus) {
+  //   & div {
+  //     display: none;
+  //   }
+  // }
 `;
 
 export const SelectList = styled.div`

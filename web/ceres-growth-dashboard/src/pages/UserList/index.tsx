@@ -1,38 +1,61 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Title, Wrapper } from '../../styles/global';
-// import TableOptions from '../../components/TableOptions';
+import TableOptions from '../../components/TableOptions';
 import Table from '../../components/Table';
 import { Grid, Row, ColMd12 } from '../../styles/grid';
 
-// SearchBoxDiv
-import { Box, Input, SearchBoxDiv } from '../../components/Searchbox/styles';
-import { ReactComponent as Magnifier } from '../../images/magnifier.svg';
 import api from '../../services/api';
-
-// tableOptions
-import {
-  TableOptions,
-  SendButton,
-  SendButtonDiv,
-} from '../../components/TableOptions/styles';
-
-import Select from '../../components/Select';
-
-const selects = [
-  {
-    key: 'RedesSociais',
-    title: <p>Rede Social</p>,
-    options: ['Instagram', 'Facebook'],
-  },
-  {
-    key: 'Filtros',
-    title: <p>Filtros</p>,
-    options: ['Opc 1', 'Opc 2', 'Opc 3'],
-  },
-];
-
+ 
 const UserList: React.FC = () => {
+  const [redesSociais, setRedesSociais] = useState("");
+  const [filtros, setFiltros] = useState("");
+
+  const selects = [
+    {
+      key: 'RedesSociais',
+      title: <p>Rede Social</p>,
+      options: ['Instagram', 'Facebook'],
+      onSelect: (value: string) => {
+        setRedesSociais(value);
+      },
+    },
+    {
+      key: 'Filtros',
+      title: <p>Filtros</p>,
+      options: ['Opc 1', 'Opc 2', 'Opc 3'],
+      onSelect: (value: string) => {
+        setFiltros(value);
+      },
+    },
+  ];
+
   const [tableContent, setTableContent] = useState('');
+
+  const searchApi = useCallback(async (username:string) => {
+    return api.get(
+      '/webScraping/users/instagram',
+      {
+        params: {
+          username,
+          rede_social: redesSociais,
+          filtro: filtros,
+        },
+      },
+    )
+  }, [redesSociais, filtros]);
+
+  const onInputMagnifier = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    searchApi(e.target.value).then((res)=>{
+      setTableContent(res.data);
+    });
+  }
+
+  useEffect(() => {
+    searchApi('').then((res) => {
+      setTableContent(res.data)
+    });
+  },[searchApi])
+
   return (
     <>
       <Wrapper>
@@ -44,37 +67,7 @@ const UserList: React.FC = () => {
           </Row>
           <Row>
             <ColMd12>
-              <TableOptions>
-                <Row>
-                  <SearchBoxDiv>
-                    <Box>
-                      <Input
-                        placeholder="Buscar"
-                        onChange={async (
-                          e: React.ChangeEvent<HTMLInputElement>,
-                        ) => {
-                          const res = await api.get(
-                            '/webScraping/users/instagram',
-                            {
-                              params: {
-                                username: e.target.value,
-                              },
-                            },
-                          );
-                          setTableContent(res.data);
-                        }}
-                      />
-                      <Magnifier />
-                    </Box>
-                  </SearchBoxDiv>
-                  {selects.map(value => (
-                    <Select selectInfo={value} key={value.key} />
-                  ))}
-                  <SendButtonDiv>
-                    <SendButton>Enviar mensagem</SendButton>
-                  </SendButtonDiv>
-                </Row>
-              </TableOptions>
+              <TableOptions onInputMagnifier={onInputMagnifier} selects={selects} />
             </ColMd12>
           </Row>
           <Row>
