@@ -7,8 +7,9 @@ import { Grid, Row, ColMd12 } from '../../styles/grid';
 import api from '../../services/api';
  
 const UserList: React.FC = () => {
-  const [redesSociais, setRedesSociais] = useState("");
+  const [redesSociais, setRedesSociais] = useState("Instagram");
   const [filtros, setFiltros] = useState("");
+  const [tableContent, setTableContent] = useState('');
 
   const selects = [
     {
@@ -29,15 +30,12 @@ const UserList: React.FC = () => {
     },
   ];
 
-  const [tableContent, setTableContent] = useState('');
-
   const searchApi = useCallback(async (username:string) => {
     return api.get(
-      '/webScraping/users/instagram',
+      `/webScraping/users/${redesSociais.toLocaleLowerCase()}`,
       {
         params: {
           username,
-          rede_social: redesSociais,
           filtro: filtros,
         },
       },
@@ -45,14 +43,15 @@ const UserList: React.FC = () => {
   }, [redesSociais, filtros]);
 
   const onInputMagnifier = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    searchApi(e.target.value).then((res)=>{
-      setTableContent(res.data);
-    });
+    if (redesSociais)
+      searchApi(e.target.value).then((res)=>{
+        setTableContent(res.data);
+      });
   }
 
   useEffect(() => {
     searchApi('').then((res) => {
-      setTableContent(res.data)
+        setTableContent(res.data)
     });
   },[searchApi])
 
