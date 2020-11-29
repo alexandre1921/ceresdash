@@ -7,7 +7,7 @@ import { Grid, Row, ColMd12 } from '../../styles/grid';
 import api from '../../services/api';
  
 const UserList: React.FC = () => {
-  const [redesSociais, setRedesSociais] = useState({title:"Rede Social",value:"Instagram"});
+  const [redesSociais, setRedesSociais] = useState({title:"Rede Social",value:""});
   const [filtros, setFiltros] = useState({title:"Filtros",value:""});
   const [inputMagnifier, setInputMagnifier] = useState("");
   const [tableContent, setTableContent] = useState('');
@@ -45,16 +45,17 @@ const UserList: React.FC = () => {
 
   const onInputMagnifier = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputMagnifier(e.target.value);
-    if (redesSociais)
+    if (redesSociais.value)
       searchApi(e.target.value).then((res)=>{
         setTableContent(res.data);
       });
   }
 
   useEffect(() => {
-    searchApi(inputMagnifier).then((res) => {
-        setTableContent(res.data)
-    });
+    if (redesSociais.value)
+      searchApi(inputMagnifier).then((res) => {
+          setTableContent(res.data)
+      });
   },[searchApi])
 
   return (
