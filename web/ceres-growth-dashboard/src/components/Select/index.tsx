@@ -13,11 +13,12 @@ interface Props {
   selectInfo: {
     title: JSX.Element;
     options: Array<string>;
+    values: Array<string>;
   };
 }
 
 const Select: React.FC<Props> = ({selectInfo, onSelect}: Props) => {
-  const { title, options } = selectInfo;
+  const { title, options, values } = selectInfo;
   const [display, setDisplay] = useState("none");
   return (
     <SelectDiv onFocus={()=>{setDisplay("")}} onBlur={async ()=>{
@@ -33,10 +34,10 @@ const Select: React.FC<Props> = ({selectInfo, onSelect}: Props) => {
           </SelectTitle>
         </>
         <SelectList>
-          {options.map((option: string) => (
+          {options.map((option: string, key: number) => (
             <SelectOption style={{display: display}} key={option} href="#" onClick={()=>{
                   setDisplay("none");
-                  onSelect(option);
+                  onSelect(values[key]);
                 }
               }>
               {option}

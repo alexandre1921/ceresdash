@@ -9,6 +9,7 @@ interface SelectTable{
   key: string;
   title: JSX.Element;
   options: string[];
+  values: Array<string>;
   onSelect: (value: string) => void;
 }
 

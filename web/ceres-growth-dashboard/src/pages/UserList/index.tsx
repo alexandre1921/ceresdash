@@ -17,6 +17,7 @@ const UserList: React.FC = () => {
       key: 'RedesSociais',
       title: <p>{redesSociais.title}</p>,
       options: ['Instagram', 'Facebook'],
+      values: ["instagram","facebook"],
       onSelect: (value: string) => {
         setRedesSociais({title:value,value});
       },
@@ -25,6 +26,7 @@ const UserList: React.FC = () => {
       key: 'Filtros',
       title: <p>{filtros.title}</p>,
       options: ['Opc 1', 'Opc 2', 'Opc 3'],
+      values: ["opc1","opc2","opc3"],
       onSelect: (value: string) => {
         setFiltros({title:value,value});
       },
@@ -56,7 +58,7 @@ const UserList: React.FC = () => {
       searchApi(inputMagnifier).then((res) => {
           setTableContent(res.data)
       });
-  },[searchApi])
+  },[searchApi, redesSociais, inputMagnifier])
 
   return (
     <>
