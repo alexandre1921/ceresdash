@@ -37,7 +37,7 @@ const UserList: React.FC = () => {
       {
         params: {
           username,
-          filtro: filtros,
+          filtro: filtros.value,
         },
       },
     )
