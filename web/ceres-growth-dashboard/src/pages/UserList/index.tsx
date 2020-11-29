@@ -7,32 +7,33 @@ import { Grid, Row, ColMd12 } from '../../styles/grid';
 import api from '../../services/api';
  
 const UserList: React.FC = () => {
-  const [redesSociais, setRedesSociais] = useState("Instagram");
-  const [filtros, setFiltros] = useState("");
+  const [redesSociais, setRedesSociais] = useState({title:"Rede Social",value:"Instagram"});
+  const [filtros, setFiltros] = useState({title:"Filtros",value:""});
+  const [inputMagnifier, setInputMagnifier] = useState("");
   const [tableContent, setTableContent] = useState('');
 
   const selects = [
     {
       key: 'RedesSociais',
-      title: <p>Rede Social</p>,
+      title: <p>{redesSociais.title}</p>,
       options: ['Instagram', 'Facebook'],
       onSelect: (value: string) => {
-        setRedesSociais(value);
+        setRedesSociais({title:value,value});
       },
     },
     {
       key: 'Filtros',
-      title: <p>Filtros</p>,
+      title: <p>{filtros.title}</p>,
       options: ['Opc 1', 'Opc 2', 'Opc 3'],
       onSelect: (value: string) => {
-        setFiltros(value);
+        setFiltros({title:value,value});
       },
     },
   ];
 
   const searchApi = useCallback(async (username:string) => {
     return api.get(
-      `/webScraping/users/${redesSociais.toLocaleLowerCase()}`,
+      `/webScraping/users/${redesSociais.value.toLocaleLowerCase()}`,
       {
         params: {
           username,
@@ -43,6 +44,7 @@ const UserList: React.FC = () => {
   }, [redesSociais, filtros]);
 
   const onInputMagnifier = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputMagnifier(e.target.value);
     if (redesSociais)
       searchApi(e.target.value).then((res)=>{
         setTableContent(res.data);
@@ -50,7 +52,7 @@ const UserList: React.FC = () => {
   }
 
   useEffect(() => {
-    searchApi('').then((res) => {
+    searchApi(inputMagnifier).then((res) => {
         setTableContent(res.data)
     });
   },[searchApi])
