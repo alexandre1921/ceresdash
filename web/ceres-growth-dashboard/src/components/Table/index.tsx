@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   TableComponent,
   Thead,
@@ -15,21 +15,12 @@ import { ReactComponent as MarkedCheckbox } from '../../images/markedCheckbox.sv
 import Modal from '../Modal';
 import ModalList from '../ModalList';
 import ModalSendMessage from '../ModalSendMessage';
-import api from '../../services/api';
 
 interface TableInfo {
   thead: (string | JSX.Element)[];
   tbody: (string | JSX.Element)[][];
   tfoot: JSX.Element[];
 }
-
-const result = (username: string) =>
-  api.get('/webScraping/users/facebook', {
-    params: {
-      username,
-      take: 10,
-    },
-  });
 
 const marker = (
   callbacke: React.Dispatch<
@@ -70,7 +61,13 @@ const marker = (
     );
   callbacke(newTable);
 };
-const Table: React.FC = ({ children }) => {
+
+interface Props {
+  tableContent:any;
+}
+
+const Table: React.FC<Props> = ({ tableContent }:Props) => {
+
   const [tableInfo, setTableInfo] = useState({
     thead: [
       <button
@@ -96,37 +93,30 @@ const Table: React.FC = ({ children }) => {
     ],
   });
 
+  tableInfo.tbody = [];
+  let value;
+  for (let i = 0; i < tableContent.length; i++) {
+      value=tableContent[i];
+      tableInfo.tbody.push([
+      <button 
+        type="button"
+        onClick={() => {
+          marker(setTableInfo, tableInfo, 'tbody',0,false)
+        }}
+      >
+        <Checkbox />
+      </button>,
+      value.username,
+      `@${value.full_name}`,
+      value.id,
+      'more info',
+    ]);
+  }
+  const showTable=tableInfo.tbody.length===0;
+
   const [[isOpen, modal], setModal] = useState([false, '']);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const teste = () => {
-    result(`${children}`)
-      .then(res => {
-        const newTable = { ...tableInfo };
-        newTable.tbody = [];
-        res.data.forEach(
-          // eslint-disable-next-line camelcase
-          (value: { url: string; username: string; id: string }) => {
-            newTable.tbody.push([
-              <button type="button">
-                <Checkbox />
-              </button>,
-              value.username,
-              `@${value.url}`,
-              value.id,
-              'more info',
-            ]);
-          },
-        );
-        setTableInfo(newTable);
-        return newTable;
-      })
-      .then(res => console.log(res));
-  };
-  useEffect(() => {
-    teste();
-  }, [children, teste]);
   return (
-    <>
+    <div style={{display:showTable?"none":""}}>
       <Modal open={isOpen}>
         {(() => {
           switch (modal) {
@@ -208,7 +198,7 @@ const Table: React.FC = ({ children }) => {
           </tr>
         </Tfoot>
       </TableComponent>
-    </>
+    </div>
   );
 };
 export default Table;

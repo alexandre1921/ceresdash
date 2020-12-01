@@ -3,6 +3,7 @@ import { TableOptions, SendButton, SendButtonDiv } from './styles';
 import { Row } from '../../styles/grid';
 import SearchBox from '../Searchbox';
 import Select from '../Select';
+import api from '../../services/api';
 
 const tableOptions: React.FC = () => {
   const selects = [
@@ -24,7 +25,8 @@ const tableOptions: React.FC = () => {
         <SearchBox />
         {selects.map(value => (
           <Select selectInfo={value} key={value.key} />
-        ))}
+        ))
+        }
         <SendButtonDiv>
           <SendButton>Enviar mensagem</SendButton>
         </SendButtonDiv>
