@@ -22,7 +22,7 @@ export default class CreateFacebookUsers1602866624062 implements MigrationInterf
             length: '100',
           },
           {
-            name: 'url',
+            name: 'full_name',
             type: 'varchar',
             length: '100',
             isNullable: true,

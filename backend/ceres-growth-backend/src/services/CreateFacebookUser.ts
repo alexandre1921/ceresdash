@@ -19,58 +19,58 @@ class CreateFacebookUser {
 
          {
            username: 'Douglas Tim Lemos',
-           url: 'https://www.facebook.com/douglastim.lemos',
+           full_name: 'https://www.facebook.com/douglastim.lemos',
            id: '100041237572304',
           },
           {
             username: 'Cleiton Braga',
-            url: 'https://www.facebook.com/cleiton.braga.7798',
+            full_name: 'https://www.facebook.com/cleiton.braga.7798',
             id: '100035768775537',
           },
           {
             username: 'Bianca Oliveiraa',
-            url: 'https://www.facebook.com/bianca.oliveiraa.146',
+            full_name: 'https://www.facebook.com/bianca.oliveiraa.146',
             id: '100025788971584',
           },
           {
             username: 'Fagner Sousa',
-            url: 'https://www.facebook.com/dumke.silva.7',
+            full_name: 'https://www.facebook.com/dumke.silva.7',
             id: '100015100301245',
           },
           {
             username: 'Elieneia Souza',
-            url: 'https://www.facebook.com/elieneia.souza.3',
+            full_name: 'https://www.facebook.com/elieneia.souza.3',
             id: '100013568507757',
           },
           {
             username: 'Tomás Júnior Cossa Júnior',
-            url: 'https://www.facebook.com/tomasjuniorcossa.junior',
+            full_name: 'https://www.facebook.com/tomasjuniorcossa.junior',
             id: '100012816455220',
           },
           {
             username: 'Nety Campos',
-            url: 'https://www.facebook.com/nety.campos.965',
+            full_name: 'https://www.facebook.com/nety.campos.965',
             id: '100012201644815',
           },
           {
             username: 'Magna Ferraz',
-            url: 'https://www.facebook.com/magna.ferraz.33',
+            full_name: 'https://www.facebook.com/magna.ferraz.33',
             id: '100009672811493',
           },
           {
             username: 'Maria Samara Almeida Souza',
-            url: 'https://www.facebook.com/mariasamara.almeidasouza.3',
+            full_name: 'https://www.facebook.com/mariasamara.almeidasouza.3',
             id: '100030134504684',
           },
           {
             username: 'Luciano Pereira',
-            url: 'https://www.facebook.com/profile.php?id=100044234257525',
+            full_name: 'https://www.facebook.com/profile.php?id=100044234257525',
             id: '100044234257525',
 
           },
           {
             username: 'Erica',
-            url: 'https://www.facebook.com/profile.php?id=100044234257525',
+            full_name: 'https://www.facebook.com/profile.php?id=100044234257525',
             id: '1000442342575257',
 
           },
@@ -79,7 +79,7 @@ class CreateFacebookUser {
 
          const facebookUser = facebookUserRepository.create({
            username: value.username,
-           url: value.url,
+           full_name: value.full_name,
            id: value.id,
 
          });

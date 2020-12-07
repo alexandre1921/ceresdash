@@ -5,28 +5,28 @@ import SearchBox from '../Searchbox';
 import Select from '../Select';
 import api from '../../services/api';
 
-const tableOptions: React.FC = () => {
-  const selects = [
-    {
-      key: 'RedesSociais',
-      title: <p>Rede Social</p>,
-      options: ['Instagram', 'Facebook'],
-    },
-    {
-      key: 'Filtros',
-      title: <p>Filtros</p>,
-      options: ['Opc 1', 'Opc 2', 'Opc 3'],
-    },
-  ];
 
+interface SelectTable{
+  key: string;
+  title: JSX.Element;
+  options: string[];
+  values: Array<string>;
+  onSelect: (value: string) => void;
+}
+
+interface Props {
+  onInputMagnifier: (e: React.ChangeEvent<HTMLInputElement>) => Promise<void>;
+  selects: Array<SelectTable>;
+}
+
+const tableOptions: React.FC<Props> = ({selects, onInputMagnifier}) => {
   return (
     <TableOptions>
       <Row>
-        <SearchBox />
+        <SearchBox onInputMagnifier={onInputMagnifier}/>
         {selects.map(value => (
-          <Select selectInfo={value} key={value.key} />
-        ))
-        }
+          <Select selectInfo={value} key={value.key} onSelect={value.onSelect}/>
+        ))}
         <SendButtonDiv>
           <SendButton>Enviar mensagem</SendButton>
         </SendButtonDiv>

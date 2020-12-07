@@ -7,7 +7,7 @@ class FacebookUser {
   username: string;
 
   @Column()
-  url: string;
+  full_name: string;
 
   @PrimaryColumn()
   id: string;

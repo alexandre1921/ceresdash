@@ -1,27 +1,18 @@
 import React from 'react';
 import { Box, Input, SearchBoxDiv } from './styles';
 import { ReactComponent as Magnifier } from '../../images/magnifier.svg';
-import api from '../../services/api';
 
-const SearchBox: React.FC = () => {
+interface Props {
+  onInputMagnifier: (e: React.ChangeEvent<HTMLInputElement>) => Promise<void>;
+}
+
+const SearchBox: React.FC<Props> = ({onInputMagnifier}) => {
   return (
     <SearchBoxDiv>
       <Box>
         <Input
           placeholder="Buscar"
-          onChange={async (e: React.ChangeEvent<HTMLInputElement>) => {
-            const res = await api.get('/webScraping/users/instagram', {
-              params: {
-                username: e.target.value,
-              },
-            });
-            console.log(res.data);
-            const resface = await api.get('/weScraping/users/facebook', {
-              params: {
-                username: e.target.value,
-              },
-            });
-          }}
+          onChange={onInputMagnifier}
         />
         <Magnifier />
       </Box>

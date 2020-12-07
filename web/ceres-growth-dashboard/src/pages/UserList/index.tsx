@@ -1,38 +1,65 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Title, Wrapper } from '../../styles/global';
-// import TableOptions from '../../components/TableOptions';
+import TableOptions from '../../components/TableOptions';
 import Table from '../../components/Table';
 import { Grid, Row, ColMd12 } from '../../styles/grid';
 
-// SearchBoxDiv
-import { Box, Input, SearchBoxDiv } from '../../components/Searchbox/styles';
-import { ReactComponent as Magnifier } from '../../images/magnifier.svg';
 import api from '../../services/api';
-
-// tableOptions
-import {
-  TableOptions,
-  SendButton,
-  SendButtonDiv,
-} from '../../components/TableOptions/styles';
-
-import Select from '../../components/Select';
-
-const selects = [
-  {
-    key: 'RedesSociais',
-    title: <p>Rede Social</p>,
-    options: ['Instagram', 'Facebook'],
-  },
-  {
-    key: 'Filtros',
-    title: <p>Filtros</p>,
-    options: ['Opc 1', 'Opc 2', 'Opc 3'],
-  },
-];
-
+ 
 const UserList: React.FC = () => {
+  const [redesSociais, setRedesSociais] = useState({title:"Rede Social",value:""});
+  const [filtros, setFiltros] = useState({title:"Filtros",value:""});
+  const [inputMagnifier, setInputMagnifier] = useState("");
   const [tableContent, setTableContent] = useState('');
+
+  const selects = [
+    {
+      key: 'RedesSociais',
+      title: <p>{redesSociais.title}</p>,
+      options: ['Instagram', 'Facebook'],
+      values: ["instagram","facebook"],
+      onSelect: (value: string) => {
+        setRedesSociais({title:value,value});
+      },
+    },
+    {
+      key: 'Filtros',
+      title: <p>{filtros.title}</p>,
+      options: ['Opc 1', 'Opc 2', 'Opc 3'],
+      values: ["opc1","opc2","opc3"],
+      onSelect: (value: string) => {
+        setFiltros({title:value,value});
+      },
+    },
+  ];
+
+  const searchApi = useCallback(async (username:string) => {
+    return api.get(
+      `/webScraping/users/${redesSociais.value.toLocaleLowerCase()}`,
+      {
+        params: {
+          username,
+          filtro: filtros.value,
+        },
+      },
+    )
+  }, [redesSociais, filtros]);
+
+  const onInputMagnifier = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputMagnifier(e.target.value);
+    if (redesSociais.value)
+      searchApi(e.target.value).then((res)=>{
+        setTableContent(res.data);
+      });
+  }
+
+  useEffect(() => {
+    if (redesSociais.value)
+      searchApi(inputMagnifier).then((res) => {
+          setTableContent(res.data)
+      });
+  },[searchApi, redesSociais, inputMagnifier])
+
   return (
     <>
       <Wrapper>
@@ -44,37 +71,7 @@ const UserList: React.FC = () => {
           </Row>
           <Row>
             <ColMd12>
-              <TableOptions>
-                <Row>
-                  <SearchBoxDiv>
-                    <Box>
-                      <Input
-                        placeholder="Buscar"
-                        onChange={async (
-                          e: React.ChangeEvent<HTMLInputElement>,
-                        ) => {
-                          const res = await api.get(
-                            '/webScraping/users/instagram',
-                            {
-                              params: {
-                                username: e.target.value,
-                              },
-                            },
-                          );
-                          setTableContent(res.data);
-                        }}
-                      />
-                      <Magnifier />
-                    </Box>
-                  </SearchBoxDiv>
-                  {selects.map(value => (
-                    <Select selectInfo={value} key={value.key} />
-                  ))}
-                  <SendButtonDiv>
-                    <SendButton>Enviar mensagem</SendButton>
-                  </SendButtonDiv>
-                </Row>
-              </TableOptions>
+              <TableOptions onInputMagnifier={onInputMagnifier} selects={selects} />
             </ColMd12>
           </Row>
           <Row>

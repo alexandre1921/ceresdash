@@ -10,11 +10,10 @@ import {
 } from './styles';
 import { ReactComponent as Actions } from '../../images/actions.svg';
 import { ReactComponent as Arrow } from '../../images/arrow.svg';
-import { ReactComponent as Checkbox } from '../../images/checkbox.svg';
-import { ReactComponent as MarkedCheckbox } from '../../images/markedCheckbox.svg';
 import Modal from '../Modal';
 import ModalList from '../ModalList';
 import ModalSendMessage from '../ModalSendMessage';
+import ButtonCheckbox from '../../components/ButtonCheckbox';
 
 interface TableInfo {
   thead: (string | JSX.Element)[];
@@ -22,69 +21,22 @@ interface TableInfo {
   tfoot: JSX.Element[];
 }
 
-const marker = (
-  callbacke: React.Dispatch<
-    React.SetStateAction<{
-      thead: (string | JSX.Element)[];
-      tbody: (string | JSX.Element)[][];
-      tfoot: JSX.Element[];
-    }>
-  >,
-  tableInfo: TableInfo,
-  tableLocal: string,
-  line: number,
-  marked: boolean,
-) => {
-  const newTable = { ...tableInfo };
-  console.log(newTable.tbody[line][0]);
-  if (tableLocal === 'thead')
-    newTable.thead[0] = (
-      <button
-        type="button"
-        onClick={() => {
-          marker(callbacke, tableInfo, 'thead', 0, !marked);
-        }}
-      >
-        {marked ? <Checkbox /> : <MarkedCheckbox />}
-      </button>
-    );
-  if (tableLocal === 'tbody')
-    newTable.tbody[line][0] = (
-      <button
-        type="button"
-        onClick={() => {
-          marker(callbacke, tableInfo, 'tbody', 0, !marked);
-        }}
-      >
-        {marked ? <Checkbox /> : <MarkedCheckbox />}
-      </button>
-    );
-  callbacke(newTable);
-};
-
 interface Props {
   tableContent:any;
 }
 
 const Table: React.FC<Props> = ({ tableContent }:Props) => {
 
-  const [tableInfo, setTableInfo] = useState({
+  const [tableInfo] = useState({
     thead: [
-      <button
-        type="button"
-        onClick={() => {
-          marker(setTableInfo, tableInfo, 'thead', 0, false);
-        }}
-      >
-        <Checkbox />
-      </button>,
+      <ButtonCheckbox checked={false}/>,
       'Nome',
       'Username',
       'ID',
       'Ações',
     ],
     tbody: [[<h1>null</h1>, '', '', '', '']],
-    tfoot: [
+    tfoot: [  
       <Footer>
         <FooterText>1 de 2000</FooterText>
         <Arrow />
@@ -93,25 +45,20 @@ const Table: React.FC<Props> = ({ tableContent }:Props) => {
     ],
   });
 
-  tableInfo.tbody = [];
-  let value;
-  for (let i = 0; i < tableContent.length; i++) {
-      value=tableContent[i];
-      tableInfo.tbody.push([
-      <button 
-        type="button"
-        onClick={() => {
-          marker(setTableInfo, tableInfo, 'tbody',0,false)
-        }}
-      >
-        <Checkbox />
-      </button>,
-      value.username,
-      `@${value.full_name}`,
-      value.id,
-      'more info',
-    ]);
-  }
+
+    tableInfo.tbody = [];
+    let value;
+    for (let i = 0; i < tableContent.length; i++) {
+        value=tableContent[i];
+        tableInfo.tbody.push([
+        <ButtonCheckbox checked={false}/>,
+        value.full_name,
+        `@${value.username}`,
+        value.id,
+        'more info',
+      ]);
+    }
+  
   const showTable=tableInfo.tbody.length===0;
 
   const [[isOpen, modal], setModal] = useState([false, '']);
